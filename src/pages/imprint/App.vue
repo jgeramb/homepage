@@ -2,17 +2,16 @@
   <div class="app-container flex min-w-full flex-col items-center">
     <Imprint />
   </div>
-  <CustomFooter />
+  <CFooter />
 </template>
 
 <script>
-import CustomFooter from '@/components/CustomFooter.vue';
+import CFooter from '@/components/CFooter.vue';
 import Imprint from './components/Imprint.vue';
 
 export default {
-  name: 'ImprintPage',
   components: {
-    CustomFooter,
+    CFooter,
     Imprint
   },
   methods: {

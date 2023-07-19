@@ -32,7 +32,8 @@
         Fix the cause,<br />not the symptom
       </p>
       <span
-        class="material-symbols-rounded mt-5 flex animate-[bounce-negative_1.5s_ease-in-out_infinite] cursor-pointer items-center rounded-full bg-primary-700 p-1.5 transition duration-500 hover:bg-primary-800"
+        id="down-arrow"
+        class="material-symbols-rounded mt-5 flex cursor-pointer items-center rounded-full bg-primary-700 p-1.5 transition-colors duration-500 hover:bg-primary-800"
         style="font-size: 24px"
         @click="scrollDown()"
       >
@@ -41,7 +42,7 @@
     </div>
   </Hero>
 
-  <section class="skills-tools flex-wrap justify-around gap-20" style="margin: 8rem auto">
+  <section id="skills-tools" class="flex-wrap justify-around gap-20" style="margin: 8rem auto">
     <div class="skills">
       <!-- HTML5 -->
       <ImageAsset fileName="icons/html5.svg" alt="HTML5" :width="this.iconSize" :height="this.iconSize" />
@@ -118,7 +119,7 @@
     </div>
   </section>
 
-  <section class="projects">
+  <section id="projects">
     <h2>Projects</h2>
     <div class="projects-items relative mt-4 w-full overflow-x-hidden px-4">
       <div class="controls absolute left-0 flex h-full w-full items-center justify-between">
@@ -153,7 +154,7 @@
     </div>
   </section>
 
-  <section class="career">
+  <section id="career">
     <h2>Career</h2>
     <div class="career-items mx-auto mt-4 flex flex-col">
       <div class="career-item">
@@ -184,36 +185,39 @@
     </div>
   </section>
 
-  <CustomForm title="Contact" submitText="Send" action="/contact.php" method="POST" class="contact-form mx-auto mb-16">
-    <CustomInput title="Name" type="full_name" name="name" required />
-    <CustomInput title="E-Mail" type="email" name="email" required />
-    <CustomInput title="Subject" type="text" name="subject" required />
-    <CustomInput title="Message" type="textarea" name="message" :minLength="25" />
-  </CustomForm>
+  <CForm title="Contact" submitText="Send" action="/contact.php" method="POST" id="contact-form" class="mx-auto mb-16">
+    <CInput title="Name" type="full_name" name="name" required />
+    <CInput title="E-Mail" type="email" name="email" required />
+    <CInput title="Subject" type="text" name="subject" required />
+    <CInput title="Message" type="textarea" name="message" :minLength="25" />
+  </CForm>
 </template>
 
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import PopUp from '@/components/PopUp.vue';
 import Hero from '@/components/Hero.vue';
 import ImageAsset from '@/components/ImageAsset.vue';
-import CustomForm from '@/components/CustomForm.vue';
-import CustomInput from '@/components/CustomInput.vue';
+import CForm from '@/components/CForm.vue';
+import CInput from '@/components/CInput.vue';
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default {
-  name: 'Home',
   components: {
     PopUp,
     Hero,
     ImageAsset,
-    CustomForm,
-    CustomInput
+    CForm,
+    CInput
   },
   data() {
     return {
       iconSize: 48,
       projectImageSize: 36,
       iconGapSize: 6,
-      currentIconAnimationDelay: 0,
       currentProject: 0
     };
   },
@@ -223,28 +227,18 @@ export default {
 
       return top <= window.innerHeight && bottom >= 0;
     },
-    animateElements() {
-      // skills + tools
-      const skillsToolsContainer = document.querySelector('.skills-tools');
-
-      if (this.isElementInView(skillsToolsContainer)) skillsToolsContainer.style.animationPlayState = 'running';
-
-      // projects
-      const projectsContainer = document.querySelector('.projects');
-
-      if (this.isElementInView(projectsContainer)) projectsContainer.style.animationPlayState = 'running';
-
-      // career
-      const careerContainer = document.querySelector('.career');
-
-      if (this.isElementInView(careerContainer)) careerContainer.style.animationPlayState = 'running';
-
-      // contact form
-      const contactForm = document.querySelector('.contact-form');
-
-      if (this.isElementInView(contactForm)) contactForm.style.animationPlayState = 'running';
-    },
     alignImageAssetsInLetterForm(iconsContainer, letterArray) {
+      const skillsToolsTimeLine = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#skills-tools',
+          start: 'top center'
+        },
+        defaults: {
+          duration: 0.5,
+          ease: 'power2.out'
+        }
+      });
+
       const iconNodes = iconsContainer.getElementsByTagName('IMG');
 
       const maxColumn = letterArray[0].length,
@@ -284,7 +278,8 @@ export default {
         icon.style.position = 'absolute';
         icon.style.top = top + 'px';
         icon.style.left = left + 'px';
-        icon.style.animationDelay = (this.currentIconAnimationDelay += 100) + 'ms';
+
+        skillsToolsTimeLine.from(icon, { opacity: 0 }, '<20%');
 
         column++;
       }
@@ -301,7 +296,8 @@ export default {
           icon.style.position = 'absolute';
           icon.style.top = top + 'px';
           icon.style.left = left + 'px';
-          icon.style.animationDelay = (this.currentIconAnimationDelay += 100) + 'ms';
+
+          skillsToolsTimeLine.from(icon, { opacity: 0 }, '<20%');
 
           column++;
 
@@ -318,7 +314,13 @@ export default {
       iconsContainer.style.height = (row + 1) * this.iconSize + row * this.iconGapSize + 'px';
     },
     scrollDown() {
-      document.querySelector('.skills-tools').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      gsap.to(window, {
+        duration: 1.5,
+        scrollTo: { y: '#skills-tools', offsetY: 50 },
+        onComplete: () => {
+          window.history.replaceState(null, document.title, '/#skills-tools');
+        }
+      });
     },
     previousProject() {
       if (this.currentProject > 0) {
@@ -367,29 +369,69 @@ export default {
     }
   },
   mounted() {
-    // animate and align skills + tools icons
+    // down arrow
+    gsap.to('#down-arrow', {
+      yPercent: 12.5,
+      duration: 0.5,
+      ease: 'power2.ease',
+      repeat: -1,
+      yoyo: true
+    });
+
+    // skills + tools
     this.alignImageAssetsInLetterForm(document.querySelector('.skills'), ['1111', '   1', '   1', '1  1', ' 11 ']);
     this.alignImageAssetsInLetterForm(document.querySelector('.tools'), [' 111', '1   ', '1 11', '1  1', ' 111']);
 
     // projects
-    let currentProjectItemAnimationDelay = 0;
-
-    document.querySelectorAll('.projects-item').forEach((projectsItem) => {
-      projectsItem.style.animationDelay = (currentProjectItemAnimationDelay += 250) + 'ms';
+    const projectsTimeLine = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#projects',
+        start: 'top center'
+      },
+      defaults: {
+        duration: 1,
+        ease: 'power2.out'
+      }
+    });
+    gsap.utils.toArray('.projects-item').forEach((careerItem) => {
+      projectsTimeLine.from(careerItem, { opacity: 0 }, '<25%');
     });
 
     this.updateProject();
 
     // career
-    let currentCareerItemAnimationDelay = 0;
-
-    document.querySelectorAll('.career-item').forEach((careerItem) => {
-      careerItem.style.animationDelay = (currentCareerItemAnimationDelay += 500) + 'ms';
+    const careerTimeLine = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#career',
+        start: 'top center'
+      },
+      defaults: {
+        duration: 0.5,
+        ease: 'power2.out'
+      }
+    });
+    gsap.utils.toArray('.career-item').forEach((careerItem) => {
+      careerTimeLine.from(careerItem.querySelector('.career-item-details'), {
+        opacity: 0,
+        onStart: () => {
+          careerItem.style.animationPlayState = 'running';
+        }
+      });
     });
 
-    // scroll animations
-    window.addEventListener('scroll', this.animateElements, { passive: true });
-    this.animateElements();
+    // contact form
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#contact-form',
+          start: 'top center'
+        },
+        defaults: {
+          duration: 2.5,
+          ease: 'power2.out'
+        }
+      })
+      .from('#contact-form', { y: -25, opacity: 0 });
   }
 };
 </script>
@@ -436,33 +478,20 @@ section {
 
 /* skills + tools  */
 
-.skills-tools {
-  animation-play-state: paused;
+#skills-tools > div {
+  @apply relative inline-block text-center;
 
-  > div {
-    @apply relative inline-block text-center;
-
-    animation-play-state: inherit;
-
-    img {
-      @apply animate-[fade-in_0.5s_ease-out] rounded-xl bg-primary-800 p-2 opacity-0;
-
-      animation-fill-mode: forwards;
-      animation-play-state: inherit;
-    }
+  img {
+    @apply rounded-xl bg-primary-800 p-2;
   }
 }
 
 /* projects */
 
-.projects {
+#projects {
   @apply flex-col;
 
-  animation-play-state: paused;
-
   .projects-items {
-    animation-play-state: inherit;
-
     &::before,
     &::after {
       @apply absolute top-0 z-10 h-full w-6 from-primary-950;
@@ -482,34 +511,27 @@ section {
       @apply relative z-20 cursor-pointer rounded-full bg-primary-600 p-1.5 transition-opacity duration-500;
     }
 
-    .content {
-      animation-play-state: inherit;
+    .content .projects-item {
+      @apply mx-auto flex max-w-full flex-shrink-0 flex-col items-center gap-2 rounded-xl bg-primary-900 px-6 py-4 sm:max-w-[calc((100%-2rem)/3)];
 
-      .projects-item {
-        @apply mx-auto flex max-w-full flex-shrink-0 animate-[fade-in_1s_ease-out] flex-col items-center gap-2 rounded-xl bg-primary-900 px-6 py-4 opacity-0 sm:max-w-[calc((100%-2rem)/3)];
+      .projects-item-header {
+        @apply flex items-center gap-2;
 
-        animation-fill-mode: forwards;
-        animation-play-state: inherit;
-
-        .projects-item-header {
-          @apply flex items-center gap-2;
-
-          .projects-item-image {
-            @apply rounded-full;
-          }
-
-          .projects-item-title {
-            @apply text-2xl;
-          }
-
-          .projects-item-link {
-            @apply text-lg text-primary-300;
-          }
+        .projects-item-image {
+          @apply rounded-full;
         }
 
-        .projects-item-description {
-          @apply text-primary-400;
+        .projects-item-title {
+          @apply text-2xl;
         }
+
+        .projects-item-link {
+          @apply text-lg text-primary-300;
+        }
+      }
+
+      .projects-item-description {
+        @apply text-primary-400;
       }
     }
   }
@@ -517,23 +539,18 @@ section {
 
 /* career */
 
-.career {
+#career {
   @apply flex-col;
 
-  animation-play-state: paused;
-
   .career-items {
-    animation-play-state: inherit;
-
     .career-item {
       @apply relative flex pl-8;
 
-      animation-play-state: inherit;
+      animation-play-state: paused;
 
       &::before {
         @apply absolute h-full max-h-0 animate-[grow-to-b_0.5s_linear] bg-primary-50;
 
-        animation-delay: inherit;
         animation-fill-mode: forwards;
         animation-play-state: inherit;
 
@@ -545,7 +562,6 @@ section {
       &::after {
         @apply absolute left-0 top-0 animate-[fade-in_0.5s_linear] rounded-full bg-primary-50 opacity-0 sm:top-6;
 
-        animation-delay: inherit;
         animation-fill-mode: forwards;
         animation-play-state: inherit;
 
@@ -555,11 +571,7 @@ section {
       }
 
       .career-item-details {
-        @apply flex animate-[fade-in_0.5s_ease-out] flex-col py-4 opacity-0;
-
-        animation-delay: inherit;
-        animation-fill-mode: forwards;
-        animation-play-state: inherit;
+        @apply flex flex-col py-4;
 
         .career-item-time {
           @apply absolute top-1.5 flex translate-y-[-50%] items-center font-title text-xs uppercase text-primary-300 sm:-left-5 sm:top-7 sm:translate-x-[-100%];
@@ -575,14 +587,5 @@ section {
       }
     }
   }
-}
-
-/* contact form */
-
-.contact-form {
-  @apply animate-[fade-in_2.5s_ease-out] opacity-0;
-
-  animation-fill-mode: forwards;
-  animation-play-state: paused;
 }
 </style>

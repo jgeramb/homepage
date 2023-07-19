@@ -12,7 +12,6 @@
       :required="required === true"
       :minlength="minLength"
       :maxlength="maxLength"
-      class="rounded-xl border-2 border-solid border-primary-700 bg-transparent px-3 py-2 font-text text-sm focus:outline-none"
     />
     <textarea
       v-else
@@ -23,14 +22,13 @@
       :name="name"
       :minlength="minLength"
       :maxlength="maxLength"
-      class="rounded-xl border-2 border-solid border-primary-700 bg-transparent px-3 py-2 font-text text-sm focus:outline-none"
       required
     ></textarea>
   </div>
 </template>
+
 <script>
 export default {
-  name: 'CustomInput',
   props: {
     value: String,
     title: String,
@@ -65,12 +63,13 @@ export default {
   }
 };
 </script>
+
 <style lang="scss">
 .input-container {
-  @apply relative flex w-full flex-col justify-center gap-1;
+  @apply relative flex w-full flex-col justify-start gap-1;
 
   label {
-    @apply absolute left-2 px-1 text-sm text-primary-100;
+    @apply absolute left-2 top-2.5 px-1 text-sm text-primary-100;
 
     translate: 0;
     transition: translate 0.2s ease-out;
@@ -92,7 +91,7 @@ export default {
 
   input,
   textarea {
-    @apply relative;
+    @apply relative rounded-xl border-2 border-solid border-primary-700 bg-transparent px-3 py-2 font-text text-sm focus:outline-none;
   }
 
   textarea {

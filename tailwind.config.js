@@ -27,10 +27,6 @@ module.exports = {
     },
     extend: {
       keyframes: {
-        'bounce-negative': {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(12.5%)' }
-        },
         'fade-in': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 }

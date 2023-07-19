@@ -2,14 +2,13 @@
   <form @click.stop :class="large ? 'w-full' : ''">
     <h1 class="font-title text-2xl">{{ title }}</h1>
     <slot></slot>
-    <CustomButton type="submit">{{ submitText }}</CustomButton>
+    <CButton type="submit">{{ submitText }}</CButton>
   </form>
 </template>
 <script>
-import CustomButton from '@/components/CustomButton.vue';
+import CButton from '@/components/CButton.vue';
 
 export default {
-  name: 'CustomForm',
   props: {
     title: String,
     submitText: String,
@@ -19,7 +18,7 @@ export default {
     }
   },
   components: {
-    CustomButton
+    CButton
   }
 };
 </script>

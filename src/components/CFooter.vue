@@ -13,7 +13,6 @@
 
 <script>
 export default {
-  name: 'CustomFooter',
   computed: {
     isImprint() {
       return window.location.pathname.startsWith('/imprint');

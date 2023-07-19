@@ -52,10 +52,7 @@
 </template>
 
 <script>
-export default {
-  name: 'Imprint',
-  components: {}
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

@@ -12,7 +12,6 @@
 const icons = import.meta.globEager('@/assets/**/*');
 
 export default {
-  name: 'ImageAsset',
   props: {
     fileName: String,
     alt: String,

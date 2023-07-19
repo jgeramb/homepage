@@ -2,22 +2,21 @@
   <div class="app-container flex min-w-full flex-col items-center justify-center">
     <h1 class="text-error">Not Found</h1>
     <p class="mt-2">The requested page does not exist.</p>
-    <CustomButton class="home-button" @button-click="redirectToHome($event)" secondary>
+    <CButton class="home-button" @button-click="redirectToHome($event)" secondary>
       <span class="material-symbols-rounded">home</span>Home
-    </CustomButton>
+    </CButton>
   </div>
-  <CustomFooter />
+  <CFooter />
 </template>
 
 <script>
-import CustomFooter from '@/components/CustomFooter.vue';
-import CustomButton from '@/components/CustomButton.vue';
+import CFooter from '@/components/CFooter.vue';
+import CButton from '@/components/CButton.vue';
 
 export default {
-  name: 'NotFoundPage',
   components: {
-    CustomFooter,
-    CustomButton
+    CFooter,
+    CButton
   },
   methods: {
     updateViewportVariables() {

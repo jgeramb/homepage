@@ -5,7 +5,6 @@
 </template>
 <script>
 export default {
-  name: 'Hero',
   emits: ['close']
 };
 </script>

@@ -2,17 +2,16 @@
   <div class="app-container min-w-full justify-center">
     <Home />
   </div>
-  <CustomFooter />
+  <CFooter />
 </template>
 
 <script>
-import CustomFooter from '@/components/CustomFooter.vue';
+import CFooter from '@/components/CFooter.vue';
 import Home from './components/Home.vue';
 
 export default {
-  name: 'HomePage',
   components: {
-    CustomFooter,
+    CFooter,
     Home
   },
   methods: {
