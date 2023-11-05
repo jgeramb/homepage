@@ -1,0 +1,73 @@
+/* Google Fonts */
+
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/Outfit/Light.eot");
+  src: url("/fonts/Outfit/Light.eot?#iefix") format("embedded-opentype"), url("/fonts/Outfit/Light.woff2") format("woff2"),
+    url("/fonts/Outfit/Light.woff") format("woff"), url("/fonts/Outfit/Light.ttf") format("truetype"),
+    url("/fonts/Outfit/Light.svg#Outfit-Light") format("svg");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100;
+  src: url("/fonts/Inter/Thin.eot");
+  src: url("/fonts/Inter/Thin.eot?#iefix") format("embedded-opentype"), url("/fonts/Inter/Thin.woff2") format("woff2"),
+    url("/fonts/Inter/Thin.woff") format("woff"), url("/fonts/Inter/Thin.ttf") format("truetype"),
+    url("/fonts/Inter/Thin.svg#Inter-Thin") format("svg");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Inter/Regular.eot");
+  src: url("/fonts/Inter/Regular.eot?#iefix") format("embedded-opentype"), url("/fonts/Inter/Regular.woff2") format("woff2"),
+    url("/fonts/Inter/Regular.woff") format("woff"), url("/fonts/Inter/Regular.ttf") format("truetype"),
+    url("/fonts/Inter/Regular.svg#Inter-Regular") format("svg");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/Inter/SemiBold.eot");
+  src: url("/fonts/Inter/SemiBold.eot?#iefix") format("embedded-opentype"), url("/fonts/Inter/SemiBold.woff2") format("woff2"),
+    url("/fonts/Inter/SemiBold.woff") format("woff"), url("/fonts/Inter/SemiBold.ttf") format("truetype"),
+    url("/fonts/Inter/SemiBold.svg#Inter-SemiBold") format("svg");
+}
+
+/* Google Icons */
+
+@font-face {
+  font-display: swap;
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/GoogleIcons/Light.eot");
+  src: url("/fonts/GoogleIcons/Light.eot?#iefix") format("embedded-opentype"), url("/fonts/GoogleIcons/Light.woff2") format("woff2"),
+    url("/fonts/GoogleIcons/Light.woff") format("woff"), url("/fonts/GoogleIcons/Light.ttf") format("truetype"),
+    url("/fonts/GoogleIcons/Light.svg#Light") format("svg");
+}
+
+.material-symbols-rounded {
+  direction: ltr;
+  display: inline-block;
+  font-family: "Material Symbols Rounded";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+}
