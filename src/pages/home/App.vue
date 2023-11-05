@@ -1,33 +1,61 @@
 <template>
-  <div class="app-container min-w-full justify-center">
-    <Home />
+  <div class="min-h-[calc(var(--vh,1vh)*100-40px)] w-full justify-center">
+    <PopUp v-if="isMessageSentSet" @close="dismissMessage">
+      <div class="message-container">
+        <span class="message-icon material-symbols-rounded text-accent">check</span>
+        <p>Your message was sent successfully!</p>
+      </div>
+    </PopUp>
+
+    <PopUp v-if="isSendErrorSet" @close="dismissMessage">
+      <div class="message-container">
+        <span class="message-icon material-symbols-rounded text-error">error</span>
+        <p>
+          Your message could not be delivered:<br />
+          <span class="text-sm text-primary-400">{{ sendErrorText }}</span>
+        </p>
+      </div>
+    </PopUp>
+
+    <Hero />
+    <SkillsTools />
+    <Projects />
+    <Career />
+    <ContactForm />
   </div>
-  <CFooter />
+  <CustomFooter />
 </template>
 
-<script>
-import CFooter from '@/components/CFooter.vue';
-import Home from './components/Home.vue';
+<script setup>
+import CustomFooter from "@/components/CustomFooter.vue";
+import PopUp from "@/components/PopUp.vue";
+import Hero from "./components/Hero.vue";
+import SkillsTools from "./components/SkillsTools.vue";
+import Projects from "./components/Projects.vue";
+import Career from "./components/Career.vue";
+import ContactForm from "./components/ContactForm.vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted } from "vue";
 
-export default {
-  components: {
-    CFooter,
-    Home
-  },
-  methods: {
-    updateViewportVariables() {
-      let vh = document.documentElement.clientHeight * 0.01,
-        vw = window.innerWidth * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-      document.documentElement.style.setProperty('--vw', `${vw}px`);
-    }
-  },
-  mounted() {
-    window.addEventListener('resize', this.updateViewportVariables);
+gsap.registerPlugin(ScrollTrigger);
 
-    this.updateViewportVariables();
-  }
+const updateViewportVariables = () => {
+  let vh = document.documentElement.clientHeight * 0.01,
+    vw = window.innerWidth * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  document.documentElement.style.setProperty("--vw", `${vw}px`);
 };
+
+onMounted(() => {
+  window.addEventListener("resize", updateViewportVariables);
+  updateViewportVariables();
+});
+
+const isMessageSentSet = window.location.search.startsWith("?message_sent"),
+  isSendErrorSet = window.location.search.startsWith("?send_error="),
+  sendErrorText = isSendErrorSet ? encodeURIComponent(window.location.search.split("=")[1].replace(/\+/g, " ")) : "";
+const dismissMessage = () => window.location.replace("/");
 </script>
 
 <style lang="scss">
@@ -52,9 +80,25 @@ body {
   scrollbar-width: thin;
 }
 
-/* App container */
+section {
+  @apply mx-4 my-16 flex max-w-3xl sm:mx-auto;
 
-.app-container {
-  min-height: calc(var(--vh, 1vh) * 100 - 40px);
+  h2 {
+    @apply text-center;
+  }
+}
+
+/* PopUps */
+
+.message-container {
+  @apply mx-6 flex w-full max-w-lg flex-col items-center gap-6 rounded-xl bg-primary-900 p-8 text-center;
+
+  .message-icon {
+    @apply flex h-[50px] w-[50px] items-center justify-center rounded-full bg-primary-950 p-1.5 text-4xl;
+  }
+
+  > p {
+    @apply break-all text-xl;
+  }
 }
 </style>

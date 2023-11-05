@@ -28,4 +28,4 @@ coverage
 *.sw?
 
 # custom
-public/env.php
+env.php
