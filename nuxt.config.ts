@@ -16,6 +16,18 @@ export default defineNuxtConfig({
     viewer: false
   },
 
+  image: {
+    provider: "ipx",
+    dir: "assets/images",
+    format: ["webp"],
+    screens: {
+      sm: 320,
+      md: 768,
+      lg: 1024,
+      xl: 1280
+    }
+  },
+
   // environment
   runtimeConfig: {
     public: {
