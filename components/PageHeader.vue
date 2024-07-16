@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 grid grid-cols-[auto_1fr] items-center gap-8 overflow-hidden bg-primary-100 px-6 py-6 shadow-[2px_2px_2px_rgba(9_9_11/0.1)] transition-[max-height] duration-500 max-md:h-dvh max-md:max-h-[4.5rem] max-md:grid-rows-[auto_1fr] md:grid-cols-[1fr_3fr_1fr]"
+    class="sticky top-0 grid grid-cols-[auto_1fr] items-center gap-8 overflow-hidden bg-primary-100 px-6 py-6 shadow-[2px_2px_2px_rgba(9_9_11/0.1)] transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[4.5rem] max-md:grid-rows-[auto_1fr] md:grid-cols-[1fr_3fr_1fr]"
     :class="{ '!max-h-dvh': menuOpen }"
   >
     <NuxtLink to="/" class="flex gap-2">
@@ -28,7 +28,7 @@
         <li><NuxtLink to="/references">References</NuxtLink></li>
       </ul>
     </nav>
-    <a href="whatsapp://+491758842377" class="max-md:col-span-full md:justify-self-end">
+    <a ref="contactButton" href="whatsapp://+491758842377" class="max-md:col-span-full md:justify-self-end">
       <StyledButton class="max-md:w-full">Get in touch</StyledButton>
     </a>
   </header>
@@ -83,19 +83,20 @@ useTransitionListener(() => {
 });
 
 const menuOpen = ref(false);
+const contactButton = ref();
 const ITEM_FROM = { opacity: 0, y: -12 };
 const ITEM_TO = { opacity: 1, y: 0 };
 
 function toggleMenu() {
   const shouldExpand = !menuOpen.value;
-  const items = gsap.utils.toArray(navigation.value.getElementsByTagName("li"));
+  const items = [...gsap.utils.toArray(navigation.value.getElementsByTagName("li")), contactButton.value];
 
   gsap.fromTo(shouldExpand ? items : items.reverse(), shouldExpand ? ITEM_FROM : ITEM_TO, {
     ...(shouldExpand ? ITEM_TO : ITEM_FROM),
-    stagger: 0.05,
-    duration: 0.25,
-    delay: shouldExpand ? 0.5 : 0,
-    ease: "expo.inOut",
+    stagger: 0.1,
+    duration: 0.5,
+    delay: shouldExpand ? 0.375 : 0,
+    ease: shouldExpand ? "power3.out" : "power3.in",
     onComplete: () => (menuOpen.value = shouldExpand)
   });
 
