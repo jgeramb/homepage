@@ -38,14 +38,15 @@
 import { gsap } from "gsap";
 
 const cursor = ref();
+let cursorTween;
 
 function moveCursor(listItem) {
-  const wasHidden = gsap.getProperty(cursor.value, "opacity") === 0;
+  const wasHidden = gsap.getProperty(cursor.value, "opacity") < 0.5;
 
-  gsap.getTweensOf(cursor.value).forEach((tween) => tween.kill());
+  cursorTween?.kill();
 
   if (!listItem || (listItem && wasHidden)) {
-    gsap.to(cursor.value, { opacity: wasHidden ? 1 : 0, duration: 0.5, ease: "power3.inOut" });
+    cursorTween = gsap.to(cursor.value, { opacity: wasHidden ? 1 : 0, duration: 0.5, ease: "power3.inOut" });
 
     if (!listItem) return;
   }
@@ -59,7 +60,7 @@ function moveCursor(listItem) {
   };
 
   if (wasHidden) gsap.set(cursor.value, { ...updatedProperties });
-  else gsap.to(cursor.value, { ...updatedProperties, duration: 0.25, ease: "expo.inOut" });
+  else cursorTween = gsap.to(cursor.value, { ...updatedProperties, duration: 0.25, ease: "expo.inOut" });
 }
 
 const navigation = ref();
