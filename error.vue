@@ -3,12 +3,10 @@
     <div v-if="is404" ref="animationContainer" class="invisible relative flex justify-center gap-8">
       <div
         ref="ball"
-        class="absolute bottom-0 size-4 rounded-full bg-highlight will-change-transform md:size-8"
+        class="bg-accent absolute bottom-0 size-4 rounded-full will-change-transform md:size-8"
       ></div>
 
-      <div class="cup bg-primary-900"></div>
-      <div class="cup bg-primary-600"></div>
-      <div class="cup bg-primary-300"></div>
+      <div v-for="index in 3" :key="index" class="cup"></div>
     </div>
     <div
       ref="infoContainer"
@@ -157,7 +155,7 @@ useHeadSEO(
 
 <style scoped lang="scss">
 .cup {
-  @apply relative h-12 w-6 overflow-clip will-change-transform before:left-[0.25rem] after:left-[1.25rem] after:-scale-y-100 md:h-24 md:w-12 md:before:left-[0.5rem] md:after:left-[2.5rem];
+  @apply relative h-12 w-6 overflow-clip bg-primary-950 will-change-transform before:left-[0.25rem] after:left-[1.25rem] after:-scale-y-100 md:h-24 md:w-12 md:before:left-[0.5rem] md:after:left-[2.5rem];
 
   &::after,
   &::before {

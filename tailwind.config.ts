@@ -17,7 +17,7 @@ export default <Partial<Config>>{
       black: colors.black,
       white: colors.white,
       primary: colors.zinc,
-      highlight: "#4ca6ff",
+      accent: "#961d40",
       error: "#d93036",
       warning: "#f5a623",
       success: "#0cce6b"
@@ -29,6 +29,9 @@ export default <Partial<Config>>{
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))"
+      },
+      transitionTimingFunction: {
+        "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)"
       }
     }
   }
