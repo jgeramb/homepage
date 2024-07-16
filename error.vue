@@ -1,31 +1,34 @@
 <template>
-  <div class="grid min-h-dvh place-items-center">
-    <div v-if="is404" ref="animationContainer" class="invisible relative flex justify-center gap-8">
-      <div
-        ref="ball"
-        class="bg-accent absolute bottom-0 size-4 rounded-full will-change-transform md:size-8"
-      ></div>
+  <div class="grid h-dvh grid-rows-[auto_1fr]">
+    <PageHeader class="w-full self-start" />
+    <div class="relative grid h-full place-items-center overflow-hidden">
+      <div v-if="is404" ref="animationContainer" class="invisible relative flex justify-center gap-8">
+        <div
+          ref="ball"
+          class="absolute bottom-0 size-4 rounded-full bg-accent will-change-transform md:size-8"
+        ></div>
 
-      <div v-for="index in 3" :key="index" class="cup"></div>
-    </div>
-    <div
-      ref="infoContainer"
-      class="absolute flex flex-col justify-center text-balance px-8 text-center max-md:max-w-sm"
-      :class="{ invisible: is404 }"
-    >
-      <h1 class="font-title text-3xl font-semibold leading-tight md:text-4xl">
-        {{ is404 ? "Oh no, where did the page go?!" : "An unexpected error occurred" }}
-      </h1>
-      <p class="mt-2 md:text-lg">
-        {{
-          is404
-            ? "I've looked everywhere, but couldn't find it &hellip;"
-            : "Try again later or contact me if the error persists."
-        }}
-      </p>
-      <NuxtLink :to="useRequestHeader('Referrer') || '/'" class="mx-auto mt-8 text-primary-500 underline">
-        Go back
-      </NuxtLink>
+        <div v-for="index in 3" :key="index" class="cup"></div>
+      </div>
+      <div
+        ref="infoContainer"
+        class="absolute flex h-full flex-col justify-center text-balance px-8 text-center max-md:max-w-sm"
+        :class="{ invisible: is404 }"
+      >
+        <h1 class="font-title text-3xl font-semibold leading-tight md:text-4xl">
+          {{ is404 ? "Oh no, where did the page go?!" : "An unexpected error occurred" }}
+        </h1>
+        <p class="mt-2 md:text-lg">
+          {{
+            is404
+              ? "I've looked everywhere, but couldn't find it &hellip;"
+              : "Try again later or contact me if the error persists."
+          }}
+        </p>
+        <NuxtLink :to="useRequestHeader('Referrer') || '/'" class="mx-auto mt-8 text-primary-500 underline">
+          Go back
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
