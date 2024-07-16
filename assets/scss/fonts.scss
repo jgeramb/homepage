@@ -1,0 +1,68 @@
+/* Google Icons */
+
+@font-face {
+  font-display: swap;
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("assets/fonts/GoogleIcons/Regular.woff2") format("woff2"),
+    url("assets/fonts/GoogleIcons/Regular.woff") format("woff");
+}
+
+.material-symbols-rounded {
+  direction: ltr;
+  display: inline-block;
+  font-family: "Material Symbols Rounded";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+/* Google Fonts */
+
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 300;
+  src:
+    url("assets/fonts/Outfit/Light.woff2") format("woff2"),
+    url("assets/fonts/Outfit/Light.woff") format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 600;
+  src:
+    url("assets/fonts/Outfit/SemiBold.woff2") format("woff2"),
+    url("assets/fonts/Outfit/SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("assets/fonts/Inter/Regular.woff2") format("woff2"),
+    url("assets/fonts/Inter/Regular.woff") format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src:
+    url("assets/fonts/Inter/Medium.woff2") format("woff2"),
+    url("assets/fonts/Inter/Medium.woff") format("woff");
+}

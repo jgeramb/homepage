@@ -1,0 +1,22 @@
+{
+  "name": "homepage",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --host 127.0.0.1",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@nuxt/image": "^1.7.0",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "nuxt": "latest",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "sass": "^1.77.8",
+    "tailwindcss": "^3.4.5",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5"
+  },
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+}
