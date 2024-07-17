@@ -1,14 +1,14 @@
 <template>
   <footer
-    class="grid grid-cols-1 gap-6 divide-primary-200 border-t border-t-primary-200 max-md:divide-y max-md:pb-6 max-md:*:px-6 max-md:*:pt-6 md:grid-cols-[24rem_1fr] md:divide-x md:px-6 md:*:py-6"
+    class="flex gap-6 divide-primary-200 border-t border-t-primary-200 px-6 max-md:flex-col max-md:divide-y max-md:pb-12 max-md:pt-6 max-md:*:pt-6 md:gap-12 md:divide-x md:px-12 md:*:py-12"
   >
-    <div class="flex flex-col font-title uppercase tracking-wider *:leading-relaxed">
+    <div class="flex grow flex-col font-title uppercase tracking-wider *:leading-relaxed md:max-w-sm">
       <div class="mb-6 flex w-full gap-6">
         <NuxtImg
           src="brand/banner.svg"
           alt="Banner Logo"
           width="300"
-          height="105.44"
+          height="105"
           loading="lazy"
           class="mr-auto w-[6.403rem]"
         />
@@ -40,7 +40,7 @@
         25474 Bönningstedt<br />
       </p>
     </div>
-    <nav class="flex gap-x-12 gap-y-6 max-md:flex-col md:pl-6">
+    <nav class="flex gap-x-12 gap-y-6 max-md:flex-col md:pl-12">
       <ul>
         <li>
           <h2>Me</h2>
