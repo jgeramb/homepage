@@ -2,7 +2,7 @@
   <footer
     class="flex gap-6 divide-primary-200 border-t border-t-primary-200 px-6 max-md:flex-col max-md:divide-y max-md:pb-12 max-md:pt-6 max-md:*:pt-6 md:gap-12 md:divide-x md:px-12 md:*:py-12"
   >
-    <div class="flex grow flex-col font-title uppercase tracking-wider *:leading-relaxed md:max-w-sm">
+    <div class="flex grow flex-col uppercase tracking-wider *:leading-relaxed md:max-w-sm">
       <div class="mb-6 flex w-full gap-6">
         <NuxtImg
           src="brand/banner.svg"
@@ -34,7 +34,7 @@
           </svg>
         </a>
       </div>
-      <p class="font-semibold">Justus Geramb</p>
+      <p class="font-title font-semibold">Justus Geramb</p>
       <p class="text-sm">
         Winzeldorfer Str. 48c<br />
         25474 Bönningstedt<br />
