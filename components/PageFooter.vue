@@ -69,7 +69,11 @@
   @apply flex items-center gap-2;
 
   svg {
-    @apply h-5 fill-primary-950;
+    @apply h-5 fill-primary-950 transition-[fill,transform] duration-300;
+  }
+
+  &:hover svg {
+    @apply scale-95 fill-primary-800;
   }
 }
 
