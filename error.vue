@@ -1,14 +1,28 @@
 <template>
-  <div class="grid h-screen grid-rows-[auto_1fr] pb-6">
+  <div class="grid h-screen grid-rows-[auto_1fr]">
     <PageHeader class="w-full self-start" />
-    <div class="relative mt-6 grid h-full place-items-center overflow-hidden">
-      <div v-if="is404" ref="animationContainer" class="invisible relative flex justify-center gap-8">
+    <div class="relative grid h-full place-items-center overflow-hidden py-6">
+      <div
+        v-if="is404"
+        ref="animationContainer"
+        class="invisible relative flex justify-center gap-8 px-6 md:gap-12"
+      >
+        <div class="absolute bottom-0 z-10 h-0.5 w-full translate-y-full bg-primary-200"></div>
         <div
           ref="ball"
           class="absolute bottom-0 size-4 rounded-full bg-accent will-change-transform md:size-8"
         ></div>
 
-        <div v-for="index in 3" :key="index" class="cup"></div>
+        <NuxtImg
+          v-for="index in 3"
+          :key="index"
+          src="404-cup.svg"
+          alt="Cup"
+          width="114"
+          height="150"
+          loading="eager"
+          class="cup"
+        />
       </div>
       <div
         ref="infoContainer"
@@ -53,19 +67,6 @@ onMounted(() => {
   const cups = Array.from(document.getElementsByClassName("cup"));
   const initialXPositions = new Map(cups.map((cup) => [cup, cup.getBoundingClientRect().x]));
 
-  function animateCup(cup, xPosition, onComplete = undefined) {
-    const timeline = gsap.timeline({
-      defaults: {
-        duration: 0.25,
-        ease: "power3.inOut"
-      },
-      onComplete
-    });
-    timeline.to(cup, { yPercent: 37.5 });
-    timeline.to(cup, { x: xPosition - initialXPositions.get(cup) }, "<25%");
-    timeline.to(cup, { yPercent: 0 }, "<25%");
-  }
-
   function getRandomCup() {
     return cups[Math.floor(Math.random() * cups.length)];
   }
@@ -78,6 +79,20 @@ onMounted(() => {
     const ballWidth = ball.value.getBoundingClientRect().width;
 
     return randomCupRect.x - initialBallX + (randomCupRect.width - ballWidth) / 2;
+  }
+
+  function animateCup(cup, xPosition, onComplete = undefined) {
+    const timeline = gsap.timeline({
+      defaults: {
+        duration: 0.25,
+        ease: "power3.inOut"
+      },
+      onComplete
+    });
+    timeline.set(cup, { zIndex: cup === randomCup ? 10 : -10 });
+    timeline.to(cup, { yPercent: 37.5 * (cup === randomCup ? 1 : -1) });
+    timeline.to(cup, { x: xPosition - initialXPositions.get(cup) }, "<25%");
+    timeline.to(cup, { yPercent: 0 }, "<25%");
   }
 
   function mixCups(iteration = 1) {
@@ -131,8 +146,8 @@ onMounted(() => {
       onComplete: mixCups,
       delay: 0.5
     });
+    timeline.set(cups, { y: -ballSize - CUP_LIFT_GAP });
     timeline.to(animationContainer.value, { autoAlpha: 1 });
-    timeline.to(cups, { y: -ballSize - CUP_LIFT_GAP });
     timeline.to(ball.value, {
       x: getBallX(),
       ease: "expo.inOut"
@@ -159,11 +174,6 @@ useHeadSEO(
 
 <style scoped lang="scss">
 .cup {
-  @apply relative h-12 w-6 overflow-clip bg-primary-950 will-change-transform before:left-[0.25rem] after:left-[1.25rem] after:-scale-y-100 md:h-24 md:w-12 md:before:left-[0.5rem] md:after:left-[2.5rem];
-
-  &::after,
-  &::before {
-    @apply absolute -translate-x-1/2 -translate-y-1/2 rotate-90 border-solid border-[transparent_transparent_theme('colors.primary.100')_transparent] content-[''] [border-width:0.25rem_3rem_0.25rem] md:[border-width:0.5rem_6rem_0.5rem];
-  }
+  @apply relative w-8 rotate-180 bg-gradient-to-t from-transparent from-[82.5%] to-primary-100 to-[82.5%] drop-shadow-sm will-change-transform md:w-16;
 }
 </style>
