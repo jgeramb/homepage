@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 grid grid-cols-[auto_1fr] items-center gap-8 overflow-hidden border-b border-b-primary-200 bg-primary-100 px-6 py-6 transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[4.5rem] max-md:grid-rows-[auto_1fr] max-md:pb-12 md:grid-cols-[1fr_3fr_1fr]"
+    class="sticky top-0 z-40 grid grid-cols-[auto_1fr] items-center gap-8 overflow-hidden border-b border-b-primary-200 bg-primary-100/75 px-6 py-6 backdrop-blur-md transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[4.5rem] max-md:grid-rows-[auto_1fr] max-md:pb-12 md:grid-cols-[1fr_3fr_1fr]"
     :style="menuOpen && { maxHeight: `${documentHeight}px` }"
   >
     <NuxtLink to="/" aria-label="Return to home" class="flex gap-2">
