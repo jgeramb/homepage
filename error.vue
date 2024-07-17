@@ -18,7 +18,7 @@
         <h1 class="font-title text-3xl font-semibold leading-tight md:text-4xl">
           {{ is404 ? "Oh no, where did the page go?!" : "An unexpected error occurred" }}
         </h1>
-        <p class="mt-2 md:text-lg">
+        <p class="mt-4 md:text-lg">
           {{
             is404
               ? "I've looked everywhere, but couldn't find it &hellip;"
