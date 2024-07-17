@@ -11,7 +11,7 @@
     "nuxt": "latest",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "sass": "^1.77.8",
-    "tailwindcss": "^3.4.5",
+    "tailwindcss": "^3.4.6",
     "vue": "latest",
     "vue-router": "latest"
   },
