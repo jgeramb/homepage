@@ -4,8 +4,15 @@
     :style="menuOpen && { maxHeight: `${documentHeight}px` }"
   >
     <NuxtLink to="/" aria-label="Return to home" class="flex gap-2">
-      <NuxtImg src="brand/logo.svg" alt="Logo" width="620" height="620" loading="eager" class="w-6 md:w-7" />
-      <p class="font-title text-sm uppercase leading-[1.125rem] tracking-wider max-md:hidden">
+      <NuxtImg
+        src="brand/logo.svg"
+        alt="Logo"
+        width="1024"
+        height="1024"
+        loading="eager"
+        class="w-6 md:w-7"
+      />
+      <p class="font-title text-sm uppercase leading-tight tracking-wider max-md:hidden">
         Justus<br />
         Geramb
       </p>

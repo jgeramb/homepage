@@ -5,12 +5,12 @@
     <div class="flex grow flex-col uppercase tracking-wider *:leading-relaxed md:max-w-sm">
       <div class="mb-6 flex w-full gap-6">
         <NuxtImg
-          src="brand/banner.svg"
+          src="brand/logo.svg"
           alt="Banner Logo"
-          width="300"
-          height="105"
+          width="1024"
+          height="1024"
           loading="lazy"
-          class="mr-auto w-[6.403rem]"
+          class="mr-auto w-8"
         />
         <a href="tel:+491758842377" aria-label="Phone" class="contact-option">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="130 -830 700 700" class="aspect-square">
@@ -69,19 +69,19 @@
   @apply flex items-center gap-2;
 
   svg {
-    @apply h-5 fill-primary-950 transition-[fill,transform] duration-300;
+    @apply h-5 fill-primary-950 transition-transform duration-300 ease-in-out will-change-transform;
   }
 
   &:hover svg {
-    @apply scale-95 fill-primary-800;
+    @apply scale-90;
   }
 }
 
 ul {
-  @apply flex items-center gap-2 divide-primary-200 *:leading-none max-md:divide-x md:flex-col md:items-start max-md:[&_li:first-child]:grow max-md:[&_li:not(:nth-child(2)):not(:first-child)]:pl-2 max-md:[&_li:nth-child(2)]:!border-l-0;
+  @apply flex flex-wrap items-center gap-x-2 gap-y-0.5 divide-primary-200 *:leading-none max-md:divide-x md:flex-col md:items-start md:gap-y-2 max-md:[&_li:first-child]:w-full max-md:[&_li:not(:nth-child(2)):not(:first-child)]:pl-2 max-md:[&_li:nth-child(2)]:!border-l-0;
 
   h2 {
-    @apply font-title font-semibold uppercase tracking-widest max-md:mr-4 md:mb-4 md:text-sm;
+    @apply font-title text-xs font-semibold uppercase tracking-widest max-md:mr-4 md:mb-4 md:text-sm;
   }
 
   li > a {
