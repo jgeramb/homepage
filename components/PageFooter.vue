@@ -40,7 +40,7 @@
         25474 Bönningstedt<br />
       </p>
     </div>
-    <nav class="flex gap-12 max-md:flex-col md:pl-6">
+    <nav class="flex gap-x-12 gap-y-6 max-md:flex-col md:pl-6">
       <ul>
         <li>
           <h2>Me</h2>
@@ -74,14 +74,14 @@
 }
 
 ul {
-  @apply flex flex-col items-start gap-2 *:leading-none;
+  @apply flex items-center gap-2 divide-primary-200 *:leading-none max-md:divide-x md:flex-col md:items-start max-md:[&_li:first-child]:grow max-md:[&_li:not(:nth-child(2)):not(:first-child)]:pl-2 max-md:[&_li:nth-child(2)]:!border-l-0;
 
   h2 {
-    @apply mb-2 w-full font-title font-semibold uppercase tracking-widest md:text-sm;
+    @apply font-title font-semibold uppercase tracking-widest max-md:mr-4 md:mb-4 md:text-sm;
   }
 
   li > a {
-    @apply relative uppercase tracking-widest hover:after:w-full md:text-sm;
+    @apply relative inline-block uppercase tracking-widest hover:after:w-full max-md:py-1 md:text-sm;
 
     &::after {
       @apply absolute left-0 top-full h-px w-0 bg-current transition-[width] ease-out content-[''];
