@@ -1,7 +1,6 @@
 <template>
-  <div class="grid h-screen grid-rows-[auto_1fr]">
-    <PageHeader class="w-full self-start" />
-    <div class="relative grid h-full place-items-center overflow-hidden py-6">
+  <DefaultLayout>
+    <div class="relative grid grow place-items-center overflow-hidden py-6">
       <div
         v-if="is404"
         ref="animationContainer"
@@ -46,11 +45,12 @@
         </NuxtLink>
       </div>
     </div>
-  </div>
-  <PageFooter />
+  </DefaultLayout>
 </template>
 
 <script setup>
+import DefaultLayout from "~/layouts/default.vue";
+
 const props = defineProps({ error: Object });
 const is404 = computed(() => props.error.statusCode === 404);
 
