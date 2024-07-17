@@ -1,7 +1,7 @@
 <template>
   <header
     class="sticky top-0 grid grid-cols-[auto_1fr] items-center gap-8 overflow-hidden border-b border-b-primary-200 bg-primary-100 px-6 py-6 transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[4.5rem] max-md:grid-rows-[auto_1fr] max-md:pb-12 md:grid-cols-[1fr_3fr_1fr]"
-    :class="{ '!max-h-dvh': menuOpen }"
+    :style="menuOpen && { maxHeight: `${documentHeight}px` }"
   >
     <NuxtLink to="/" aria-label="Return to home" class="flex gap-2">
       <NuxtImg src="brand/logo.svg" alt="Logo" width="620" height="620" loading="eager" class="w-6 md:w-7" />
@@ -132,6 +132,17 @@ watch(
     if (menuOpen.value) toggleMenu();
   }
 );
+
+const documentHeight = ref(0);
+
+function updateDocumentHeight() {
+  documentHeight.value = document.documentElement.clientHeight;
+}
+
+if (import.meta.client) {
+  useTransitionListener(updateDocumentHeight);
+  useEventListener("resize", updateDocumentHeight, true);
+}
 </script>
 
 <style scoped lang="scss">
