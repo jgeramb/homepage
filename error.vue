@@ -9,19 +9,20 @@
         <div class="absolute bottom-0 z-10 h-0.5 w-full translate-y-full bg-primary-200"></div>
         <div
           ref="ball"
-          class="absolute bottom-1 size-4 rounded-full bg-gradient-radial from-accent from-65% to-primary-950 drop-shadow-md will-change-transform md:size-8"
+          class="absolute bottom-1 size-4 rounded-full bg-gradient-radial from-accent from-65% to-primary-950 drop-shadow-md will-change-transform md:size-6"
         ></div>
 
         <svg
           v-for="index in 3"
           :key="index"
+          width="48"
+          height="48"
+          viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
-          xml:space="preserve"
-          viewBox="16.11 5.57 67.78 88.86"
-          class="cup aspect-[114/150]"
+          class="cup"
         >
           <path
-            d="M82.054,16.472l-8.295,64.23c0,0-0.543,7.488-2.76,8.896l-0.009,0.074h-0.106C66.318,92.519,59.666,94.429,50,94.429  c-9.667,0-16.318-1.91-20.883-4.756h-0.108l-0.008-0.074c-2.216-1.408-2.76-8.896-2.76-8.896l-8.294-64.23  c-1.186-0.838-1.838-1.736-1.838-2.672c0-4.545,15.174-8.229,33.891-8.229c18.718,0,33.891,3.684,33.891,8.229  C83.891,14.735,83.238,15.633,82.054,16.472z M50,6.964c-16.791,0-30.402,2.882-30.402,6.438c0,3.555,13.611,6.437,30.402,6.437  s30.402-2.882,30.402-6.437C80.402,9.846,66.791,6.964,50,6.964z"
+            d="M256 64C384 16 640 16 768 64C832 148.375 896 1024 896 1024H128C128 1024 192 148.375 256 64Z"
           />
         </svg>
       </div>
@@ -176,6 +177,6 @@ useHeadSEO(
 
 <style scoped lang="scss">
 .cup {
-  @apply relative w-8 rotate-180 bg-gradient-to-t from-transparent from-[82.5%] to-primary-100 to-[82.5%] drop-shadow-sm will-change-transform md:w-16;
+  @apply relative drop-shadow-sm will-change-transform md:size-16;
 }
 </style>
