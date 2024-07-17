@@ -91,12 +91,14 @@ const menuOpen = ref(false);
 const contactButton = ref();
 const ITEM_FROM = { opacity: 0, y: -12 };
 const ITEM_TO = { opacity: 1, y: 0 };
+let menuTween;
 
 function toggleMenu() {
   const shouldExpand = !menuOpen.value;
   const items = [...gsap.utils.toArray(navigation.value.getElementsByTagName("li")), contactButton.value];
 
-  gsap.fromTo(shouldExpand ? items : items.reverse(), shouldExpand ? ITEM_FROM : ITEM_TO, {
+  menuTween?.kill();
+  menuTween = gsap.fromTo(shouldExpand ? items : items.reverse(), shouldExpand ? ITEM_FROM : ITEM_TO, {
     ...(shouldExpand ? ITEM_TO : ITEM_FROM),
     stagger: 0.1,
     duration: 0.5,
