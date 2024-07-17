@@ -1,7 +1,7 @@
 <template>
-  <div class="grid h-screen grid-rows-[auto_1fr]">
+  <div class="grid h-screen grid-rows-[auto_1fr] pb-6">
     <PageHeader class="w-full self-start" />
-    <div class="relative grid h-full place-items-center overflow-hidden">
+    <div class="relative mt-6 grid h-full place-items-center overflow-hidden">
       <div v-if="is404" ref="animationContainer" class="invisible relative flex justify-center gap-8">
         <div
           ref="ball"

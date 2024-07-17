@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="mt-6 grid grid-cols-1 gap-6 divide-primary-200 border-t border-t-primary-200 max-md:divide-y max-md:pb-6 max-md:*:px-6 max-md:*:pt-6 md:grid-cols-[24rem_1fr] md:divide-x md:px-6 md:*:py-6"
+    class="grid grid-cols-1 gap-6 divide-primary-200 border-t border-t-primary-200 max-md:divide-y max-md:pb-6 max-md:*:px-6 max-md:*:pt-6 md:grid-cols-[24rem_1fr] md:divide-x md:px-6 md:*:py-6"
   >
     <div class="flex flex-col font-title uppercase tracking-wider *:leading-relaxed">
       <div class="mb-6 flex w-full gap-6">
