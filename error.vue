@@ -9,7 +9,7 @@
         <div class="absolute bottom-0 z-10 h-0.5 w-full translate-y-full bg-primary-200"></div>
         <div
           ref="ball"
-          class="absolute bottom-0 size-4 rounded-full bg-accent will-change-transform md:size-8"
+          class="absolute bottom-0 size-4 rounded-full bg-gradient-radial from-accent from-65% to-primary-950 drop-shadow-md will-change-transform md:size-8"
         ></div>
 
         <svg
