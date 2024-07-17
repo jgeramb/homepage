@@ -91,7 +91,7 @@ const menuOpen = ref(false);
 const contactButton = ref();
 const ITEM_FROM = { opacity: 0, y: -12 };
 const ITEM_TO = { opacity: 1, y: 0 };
-let menuTween;
+let menuTween, scrollY;
 
 function toggleMenu() {
   const shouldExpand = !menuOpen.value;
@@ -104,10 +104,24 @@ function toggleMenu() {
     duration: 0.5,
     delay: shouldExpand ? 0.375 : 0,
     ease: shouldExpand ? "power3.out" : "power3.in",
-    onComplete: () => (menuOpen.value = shouldExpand)
+    onComplete: () => {
+      if (!shouldExpand) {
+        menuOpen.value = false;
+
+        document.body.style.removeProperty("overflow");
+        window.scrollTo({ top: scrollY, behavior: "smooth" });
+      }
+    }
   });
 
-  if (shouldExpand) menuOpen.value = true;
+  if (shouldExpand) {
+    menuOpen.value = true;
+
+    scrollY = window.scrollY;
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.body.style.overflow = "hidden";
+  }
 }
 
 watch(
