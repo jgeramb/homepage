@@ -2,6 +2,7 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <PageFooter />
 </template>
 
 <script setup>
@@ -28,15 +29,15 @@ if (import.meta.client) onMounted(() => useClientTransitionState().setTransition
 /* Scrollbar */
 
 ::-webkit-scrollbar {
-  @apply h-[7px] w-[7px];
+  @apply size-2;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-primary-900;
+  @apply bg-primary-200;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply rounded-md bg-primary-600;
+  @apply rounded-md bg-primary-400;
 }
 
 body {

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-6">
+  <div class="flex min-h-screen flex-col gap-6">
     <PageHeader />
     <slot />
   </div>

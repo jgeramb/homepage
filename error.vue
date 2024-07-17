@@ -1,5 +1,5 @@
 <template>
-  <div class="grid h-dvh grid-rows-[auto_1fr]">
+  <div class="grid h-screen grid-rows-[auto_1fr]">
     <PageHeader class="w-full self-start" />
     <div class="relative grid h-full place-items-center overflow-hidden">
       <div v-if="is404" ref="animationContainer" class="invisible relative flex justify-center gap-8">
@@ -31,6 +31,7 @@
       </div>
     </div>
   </div>
+  <PageFooter />
 </template>
 
 <script setup>
