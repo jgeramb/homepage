@@ -6,10 +6,9 @@
         ref="animationContainer"
         class="invisible relative flex justify-center gap-8 px-6 md:gap-12"
       >
-        <div class="absolute bottom-0 z-10 h-0.5 w-full translate-y-full bg-primary-200"></div>
         <div
           ref="ball"
-          class="absolute bottom-1 size-4 rounded-full bg-gradient-radial from-accent from-65% to-primary-950 drop-shadow-md will-change-transform md:size-6"
+          class="absolute bottom-1 size-4 rounded-full bg-gradient-radial from-primary-300 to-primary-400 drop-shadow-lg will-change-transform md:size-6"
         ></div>
 
         <svg
@@ -177,6 +176,6 @@ useHeadSEO(
 
 <style scoped lang="scss">
 .cup {
-  @apply relative drop-shadow-sm will-change-transform md:size-16;
+  @apply relative drop-shadow-lg will-change-transform md:size-16;
 }
 </style>
