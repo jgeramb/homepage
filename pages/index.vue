@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <div class="px-6">
+    <FullWidthTitle class="uppercase">
+      Dreamer.<span class="text-accent">Entrepreneur.</span>Developer.
+    </FullWidthTitle>
+  </div>
 </template>
 
 <script setup>
