@@ -1,5 +1,5 @@
 <template>
-  <h1 ref="title" class="w-full overflow-hidden whitespace-nowrap font-title tracking-[0.25em] opacity-0">
+  <h1 ref="title" class="w-full overflow-hidden whitespace-nowrap font-title opacity-0">
     <slot />
   </h1>
 </template>
@@ -7,24 +7,23 @@
 <script setup>
 import { gsap } from "gsap";
 
+const MIN_LETTER_SPACING_IN_EM = 0.25;
+
 const title = ref();
 let context;
 
-function measureTextWidth(text, fontSize) {
+function measureTextWidth(text, letterSpacing, fontSize) {
   if (!context) {
-    const canvas = document.createElement("canvas");
-
-    context = canvas.getContext("2d");
-    context.letterSpacing = "0.25em";
+    context = document.createElement("canvas").getContext("2d");
   }
 
   context.font = `${fontSize}px "Outfit", "Helvetica Neue", "Helvetica", "sans-serif"`;
 
-  return context.measureText(text).width;
+  return context.measureText(text).width + (text.length - 1) * letterSpacing;
 }
 
 function calcMinFontSize(element, fontSize = 128) {
-  const textWidth = measureTextWidth(element.innerText, fontSize);
+  const textWidth = measureTextWidth(element.innerText, fontSize * MIN_LETTER_SPACING_IN_EM, fontSize);
 
   if (textWidth > element.clientWidth) {
     return calcMinFontSize(element, fontSize - 1);
@@ -36,12 +35,12 @@ function calcMinFontSize(element, fontSize = 128) {
 function updateFontSize() {
   const fontSize = calcMinFontSize(title.value);
 
-  const fullTextWidth = measureTextWidth(title.value.innerText, fontSize);
+  const fullTextWidth = measureTextWidth(title.value.innerText, 0, fontSize);
   const whitespaceWidth = title.value.clientWidth - fullTextWidth;
   const letterCount = title.value.innerText.length;
 
   title.value.style.fontSize = `${fontSize}px`;
-  title.value.style.letterSpacing = `calc(0.25em + ${whitespaceWidth / letterCount}px)`;
+  title.value.style.letterSpacing = `${whitespaceWidth / letterCount}px`;
 }
 
 useTransitionListener(() => {
