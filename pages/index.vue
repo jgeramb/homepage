@@ -1,7 +1,17 @@
 <template>
   <div class="flex flex-col gap-8 *:px-6">
     <HeroSection class="grid gap-x-24 gap-y-8 *:w-full lg:grid-cols-[4fr_3fr] lg:items-center">
-      <div class="max-lg:order-1">
+      <ImageAsset
+        src="portrait-mobile.jpeg"
+        alt="Justus Geramb"
+        height="448"
+        sizes="271px xs:583px sm:719px md:975px"
+        fit="cover"
+        :modifiers="{ position: 'top_right' }"
+        loading="eager"
+        class="h-[28rem] object-cover object-[65%_center] lg:hidden"
+      />
+      <div>
         <h2 class="text-3xl leading-snug lg:text-4xl">
           Hi, my name is
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
@@ -16,16 +26,6 @@
         </p>
         <StyledButton class="mt-8" @click="navigateTo('/about')">Learn more about me</StyledButton>
       </div>
-      <ImageAsset
-        src="portrait-mobile.jpeg"
-        alt="Justus Geramb"
-        height="448"
-        sizes="271px xs:583px sm:719px md:975px"
-        fit="cover"
-        :modifiers="{ position: 'top_right' }"
-        loading="eager"
-        class="h-[28rem] object-cover object-[65%_center] lg:hidden"
-      />
       <ImageAsset
         src="portrait.jpeg"
         alt="Justus Geramb"
