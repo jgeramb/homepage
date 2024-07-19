@@ -16,24 +16,22 @@
         </p>
         <StyledButton class="mt-8" @click="navigateTo('/about')">Learn more about me</StyledButton>
       </div>
-      <NuxtImg
+      <ImageAsset
         src="portrait-mobile.jpeg"
         alt="Justus Geramb"
         height="448"
         sizes="271px xs:583px sm:719px md:975px"
-        format="webp"
         fit="cover"
         :modifiers="{ position: 'top_right' }"
         loading="eager"
         class="h-[28rem] object-cover object-[65%_center] lg:hidden"
       />
-      <NuxtImg
+      <ImageAsset
         src="portrait.jpeg"
         alt="Justus Geramb"
         width="4125"
         height="6188"
         sizes="432px"
-        format="webp"
         loading="eager"
         preload
         class="max-lg:hidden"
@@ -48,6 +46,8 @@
 </template>
 
 <script setup>
+import ImageAsset from "~/components/ImageAsset.vue";
+
 useHeadSEO(true, "Justus Geramb", "Justus Geramb", "Dreamer. Entrepreneur. Developer.", "/");
 </script>
 
