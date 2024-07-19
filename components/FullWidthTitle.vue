@@ -1,5 +1,8 @@
 <template>
-  <h1 ref="title" class="w-full overflow-hidden whitespace-nowrap font-title leading-none opacity-0">
+  <h1
+    ref="title"
+    class="w-full overflow-hidden whitespace-nowrap font-title leading-none opacity-0 will-change-[opacity]"
+  >
     <slot />
   </h1>
 </template>
