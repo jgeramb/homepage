@@ -1,11 +1,12 @@
 <template>
-  <h1 ref="title" class="w-full overflow-hidden whitespace-nowrap font-title opacity-0">
+  <h1 ref="title" class="w-full overflow-hidden whitespace-nowrap font-title leading-none opacity-0">
     <slot />
   </h1>
 </template>
 
 <script setup>
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const MIN_LETTER_SPACING_IN_EM = 0.25;
 
@@ -50,6 +51,7 @@ useTransitionListener(() => {
 
   splitText(title.value);
 
+  gsap.registerPlugin(ScrollTrigger);
   gsap.fromTo(
     title.value.querySelectorAll("span:not(:has(> span))"),
     {
@@ -61,7 +63,11 @@ useTransitionListener(() => {
       xPercent: 0,
       duration: 0.3,
       stagger: 0.01,
-      ease: "power3.out"
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: title.value,
+        start: "bottom bottom"
+      }
     }
   );
 });
