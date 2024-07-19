@@ -20,10 +20,11 @@
         src="portrait-mobile.jpeg"
         alt="Justus Geramb"
         height="448"
-        sizes="271px sm:719px md:975px"
+        sizes="271px xs:583px sm:719px md:975px"
         format="webp"
         fit="cover"
         :modifiers="{ position: 'top_right' }"
+        loading="eager"
         class="h-[28rem] object-cover object-[65%_center] lg:hidden"
       />
       <NuxtImg
@@ -33,6 +34,8 @@
         height="6188"
         sizes="432px"
         format="webp"
+        loading="eager"
+        preload
         class="max-lg:hidden"
       />
     </HeroSection>
