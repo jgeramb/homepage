@@ -25,7 +25,7 @@
       ></div>
       <div class="line" :class="{ '-translate-y-[0.5625rem] rotate-45': menuOpen }"></div>
     </a>
-    <nav ref="navigation" class="h-full max-md:col-span-full md:justify-self-center">
+    <nav ref="navigation" class="max-md:col-span-full max-md:h-full md:justify-self-center">
       <div
         ref="cursor"
         class="absolute -z-10 rounded-md bg-primary-200 opacity-0 will-change-[opacity,left,top,width,height] max-md:hidden"
