@@ -40,7 +40,7 @@
       href="https://wa.me/+491758842377"
       class="max-md:col-span-full md:justify-self-end"
     >
-      <StyledButton class="max-md:w-full">Get in touch</StyledButton>
+      <StyledButton secondary class="max-md:w-full">Get in touch</StyledButton>
     </a>
   </header>
 </template>

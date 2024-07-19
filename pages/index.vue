@@ -24,7 +24,9 @@
           I build blazingly fast web applications with a focus on search engine optimization and user
           experience.
         </p>
-        <StyledButton class="mt-8" @click="navigateTo('/about')">Learn more about me</StyledButton>
+        <StyledButton primary class="mt-8 !text-base" @click="navigateTo('/about')">
+          Learn more about me
+        </StyledButton>
       </div>
       <ImageAsset
         src="portrait.jpeg"
