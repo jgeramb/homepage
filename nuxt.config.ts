@@ -124,6 +124,56 @@ export default defineNuxtConfig({
           href: "/icons/safari-pinned-tab.svg",
           color: "#09090b"
         }
+      ],
+      script: [
+        {
+          type: "application/ld+json",
+          innerHTML: `{
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "url": "${process.env.NUXT_PUBLIC_BASE_URL}",
+            "image": "${process.env.NUXT_PUBLIC_BASE_URL}/images/logo.png",
+            "name": "Justus Geramb",
+            "jobTitle": "Web Developer",
+            "email": "admin@justus.dev",
+            "telephone": "+49-175-884-2377",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Winzeldorfer Straße 48c",
+              "postalCode": "25474",
+              "addressLocality": "Bönningstedt",
+              "addressCountry": "DE",
+              "addressRegion": "Schleswig-Holstein"
+            }
+          }`
+        },
+        {
+          type: "application/ld+json",
+          innerHTML: `{
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "About",
+                "item": "${process.env.NUXT_PUBLIC_BASE_URL}/about"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "References",
+                "item": "${process.env.NUXT_PUBLIC_BASE_URL}/references"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Contact",
+                "item": "${process.env.NUXT_PUBLIC_BASE_URL}/contact"
+              }
+            ]
+          }`
+        }
       ]
     },
     layoutTransition: { name: "layout", mode: "out-in" },
