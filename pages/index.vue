@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-8 *:px-8">
-    <HeroSection class="grid gap-x-24 gap-y-16 *:w-full max-lg:pb-8 lg:grid-cols-[4fr_3fr] lg:items-center">
+    <HeroSection class="grid gap-x-24 gap-y-16 *:w-full lg:grid-cols-[4fr_3fr] lg:items-center">
       <ImageAsset
         src="portrait-mobile.jpeg"
         alt="Justus Geramb"
@@ -11,20 +11,18 @@
         loading="eager"
         class="h-[28rem] object-cover lg:hidden"
       />
-      <div>
+      <div class="flex flex-col items-start gap-4 !leading-relaxed max-lg:pb-8 md:text-lg">
         <h2 class="text-2xl leading-snug lg:text-4xl">
           Hi, my name is
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
           >.
         </h2>
-        <p class="mt-4 !leading-relaxed md:text-lg">
-          I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
-        </p>
-        <p class="mt-8 !leading-relaxed md:text-lg">
+        <p>I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.</p>
+        <p class="mt-4">
           I build blazingly fast web applications with a focus on search engine optimization and user
           experience.
         </p>
-        <StyledButton primary class="mt-8 !text-base" @click="navigateTo('/about')">
+        <StyledButton primary class="mt-4 !text-base" @click="navigateTo('/about')">
           Learn more about me
         </StyledButton>
       </div>
