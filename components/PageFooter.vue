@@ -3,14 +3,14 @@
     class="flex gap-8 divide-primary-200 border-t border-t-primary-200 px-8 max-md:flex-col max-md:divide-y max-md:pb-16 max-md:pt-8 max-md:*:pt-8 md:gap-12 md:divide-x md:px-12 md:*:py-12"
   >
     <div class="flex grow flex-col uppercase tracking-wider *:leading-relaxed md:max-w-sm">
-      <div class="mb-8 flex w-full gap-8">
+      <div class="mb-8 flex w-full gap-8 max-[320px]:gap-4">
         <NuxtImg
-          src="brand/logo.svg"
+          src="brand/banner.svg"
           alt="Banner Logo"
-          width="1024"
+          width="5952"
           height="1024"
           loading="lazy"
-          class="mr-auto w-8"
+          class="mr-auto w-24"
         />
         <a href="tel:+491758842377" aria-label="Phone" class="contact-option">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="130 -830 700 700" class="aspect-square">
