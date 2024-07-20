@@ -7,9 +7,9 @@
         height="448"
         sizes="271px xs:583px sm:719px md:975px"
         fit="cover"
-        :modifiers="{ position: 'top_right' }"
+        :modifiers="{ position: 'top' }"
         loading="eager"
-        class="h-[28rem] object-cover object-[65%_center] lg:hidden"
+        class="h-[28rem] object-cover lg:hidden"
       />
       <div>
         <h2 class="text-3xl leading-snug lg:text-4xl">
