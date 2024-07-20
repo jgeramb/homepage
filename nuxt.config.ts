@@ -82,11 +82,11 @@ export default defineNuxtConfig({
         // styles
         {
           name: "theme-color",
-          content: "#020617"
+          content: "#09090b"
         },
         {
           name: "apple-mobile-web-app-status-bar-style",
-          content: "#020617"
+          content: "#09090b"
         }
       ],
       link: [
