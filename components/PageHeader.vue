@@ -82,7 +82,7 @@ function updateActiveLink() {
 
   activeLink.value = links.find((link) => link.classList.contains("router-link-active"));
 
-  if (activeLink.value) moveCursor(activeLink.value);
+  moveCursor(activeLink.value);
 }
 
 useTransitionListener(() => {
