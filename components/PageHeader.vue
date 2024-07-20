@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 z-40 grid grid-cols-[auto_1fr] items-center gap-y-8 overflow-hidden border-b border-b-primary-200 bg-primary-100/75 p-6 backdrop-blur-md transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[4.5rem] max-md:grid-rows-[auto_1fr] max-md:pb-12 md:grid-cols-[1fr_3fr_1fr] md:gap-x-8"
+    class="sticky top-0 z-40 grid grid-cols-[auto_1fr] items-center gap-y-8 overflow-hidden border-b border-b-primary-200 bg-primary-100/75 p-8 backdrop-blur-md transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[5rem] max-md:grid-rows-[auto_1fr] md:grid-cols-[1fr_3fr_1fr] md:gap-x-8"
     :style="menuOpen && { maxHeight: `${documentHeight}px` }"
   >
     <NuxtLink to="/" aria-label="Return to home" class="flex gap-2">
@@ -10,7 +10,7 @@
         width="1024"
         height="1024"
         loading="eager"
-        class="w-6 md:w-7"
+        class="w-5 md:w-7"
       />
       <p class="font-title text-sm uppercase leading-tight tracking-wider max-md:hidden">
         Justus<br />
@@ -18,12 +18,12 @@
       </p>
     </NuxtLink>
     <a id="menu-icon" role="button" aria-label="Toggle menu" class="md:hidden" @click="toggleMenu">
-      <div class="line" :class="{ 'translate-y-[0.5625rem] -rotate-45': menuOpen }"></div>
+      <div class="line" :class="{ 'translate-y-[0.5rem] -rotate-45': menuOpen }"></div>
       <div
         class="line transition-opacity duration-500 will-change-[opacity]"
         :class="{ 'opacity-0': menuOpen }"
       ></div>
-      <div class="line" :class="{ '-translate-y-[0.5625rem] rotate-45': menuOpen }"></div>
+      <div class="line" :class="{ '-translate-y-[0.5rem] rotate-45': menuOpen }"></div>
     </a>
     <nav ref="navigation" class="max-md:col-span-full max-md:h-full md:justify-self-center">
       <div
@@ -154,7 +154,7 @@ if (import.meta.client) {
 
 <style scoped lang="scss">
 #menu-icon {
-  @apply flex h-[1.375rem] w-7 flex-col items-stretch justify-between justify-self-end md:hidden;
+  @apply flex h-[1.25rem] w-6 flex-col items-stretch justify-between justify-self-end md:hidden;
 
   .line {
     @apply h-1 rounded-full bg-primary-950 odd:transition-transform odd:duration-500 odd:will-change-transform;

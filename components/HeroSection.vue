@@ -1,6 +1,6 @@
 <template>
   <section
-    class="min-h-[calc(100vh-4.5rem-3rem)] md:min-h-[calc(100vh-5.3125rem-3rem)] lg:mx-auto lg:max-w-6xl"
+    class="min-h-[calc(100vh-5rem-4rem)] md:min-h-[calc(100vh-6.3125rem-4rem)] lg:mx-auto lg:max-w-6xl"
   >
     <slot />
   </section>

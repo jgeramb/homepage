@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-8 *:px-6">
+  <div class="flex flex-col gap-8 *:px-8">
     <HeroSection></HeroSection>
     <div class="border-t border-t-primary-200 pt-8">
       <blockquote>

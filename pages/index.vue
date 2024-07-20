@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-8 *:px-6">
-    <HeroSection class="grid gap-x-24 gap-y-8 *:w-full lg:grid-cols-[4fr_3fr] lg:items-center">
+  <div class="flex flex-col gap-8 *:px-8">
+    <HeroSection class="grid gap-x-24 gap-y-16 *:w-full max-lg:pb-8 lg:grid-cols-[4fr_3fr] lg:items-center">
       <ImageAsset
         src="portrait-mobile.jpeg"
         alt="Justus Geramb"
@@ -12,13 +12,13 @@
         class="h-[28rem] object-cover lg:hidden"
       />
       <div>
-        <h2 class="text-3xl leading-snug lg:text-4xl">
+        <h2 class="text-2xl leading-snug lg:text-4xl">
           Hi, my name is
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
           >.
         </h2>
         <p class="mt-4 !leading-relaxed md:text-lg">
-          I'm a full stack software developer from Hamburg, Germany.
+          I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
         </p>
         <p class="mt-8 !leading-relaxed md:text-lg">
           I build blazingly fast web applications with a focus on search engine optimization and user

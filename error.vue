@@ -1,14 +1,14 @@
 <template>
   <DefaultLayout>
-    <div class="relative grid grow place-items-center overflow-hidden py-6">
+    <div class="relative grid grow place-items-center overflow-hidden py-8">
       <div
         v-if="is404"
         ref="animationContainer"
-        class="invisible relative flex justify-center gap-8 px-6 md:gap-12"
+        class="invisible relative flex justify-center gap-8 px-8 md:gap-16"
       >
         <div
           ref="ball"
-          class="absolute bottom-1 size-4 rounded-full bg-gradient-radial from-primary-300 to-primary-400 drop-shadow-lg will-change-transform md:size-6"
+          class="absolute bottom-1 size-4 rounded-full bg-gradient-radial from-primary-300 to-primary-400 drop-shadow-lg will-change-transform md:size-8"
         ></div>
 
         <svg
