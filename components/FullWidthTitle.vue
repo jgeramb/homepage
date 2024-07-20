@@ -69,7 +69,7 @@ useTransitionListener(() => {
       ease: "power3.out",
       scrollTrigger: {
         trigger: title.value,
-        start: "bottom bottom"
+        start: "bottom 80%"
       }
     }
   );
