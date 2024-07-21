@@ -38,9 +38,4 @@ if (import.meta.client) onMounted(() => useClientTransitionState().setTransition
 ::-webkit-scrollbar-thumb {
   @apply rounded-md bg-primary-400;
 }
-
-body {
-  scrollbar-color: transparent transparent;
-  scrollbar-width: thin;
-}
 </style>
