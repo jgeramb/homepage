@@ -26,7 +26,8 @@
         width="571"
         height="764"
         sizes="256px"
-        class="fixed left-8 top-0 z-50 w-[256px] -translate-y-full"
+        draggable="false"
+        class="pointer-events-none pointer-events-none fixed left-8 top-0 z-50 w-[256px] -translate-y-full"
       />
       <GoogleIcon
         id="hit"
