@@ -1,5 +1,13 @@
 <template>
-  <HeroSection class="flex w-full items-center justify-between gap-x-24 max-lg:flex-col">
+  <HeroSection class="flex w-full flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col">
+    <div class="w-full">
+      <h1 class="mb-4 font-title text-4xl uppercase leading-snug tracking-tight">Archery</h1>
+      <ul class="font-title text-sm uppercase leading-relaxed tracking-tight">
+        <li><GoogleIcon>left_click</GoogleIcon>Press and hold <span class="opacity-50">to charge</span></li>
+        <li><GoogleIcon>drag_click</GoogleIcon>Drag <span class="opacity-50">to aim</span></li>
+        <li><GoogleIcon>mouse</GoogleIcon>Release <span class="opacity-50">to shoot</span></li>
+      </ul>
+    </div>
     <GoogleIcon
       id="hit"
       class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
@@ -8,10 +16,8 @@
     </GoogleIcon>
     <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-72" />
     <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute" />
-    <div ref="target" class="relative max-lg:mb-[calc(5*48px/2)] lg:mr-[calc(5*48px/2)]">
-      <div
-        class="absolute left-0 top-0 min-h-16 min-w-16 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary-950/10"
-      ></div>
+    <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
+      <div class="min-h-16 min-w-16 rounded-full border-2 border-primary-950/10"></div>
     </div>
   </HeroSection>
 </template>
@@ -260,11 +266,13 @@ function renderArrow() {
     tipY = 0;
   }
 
-  const { x: targetX, y: targetY } = target.value.getBoundingClientRect();
+  const targetRect = target.value.getBoundingClientRect();
+  const targetCenterX = targetRect.x + targetRect.width / 2;
+  const targetCenterY = targetRect.y + targetRect.height / 2;
 
   if (
-    Math.sqrt(Math.pow(tipX - targetX, 2) + Math.pow(tipY - targetY, 2)) <=
-    target.value.lastElementChild.clientWidth / 2
+    Math.sqrt(Math.pow(tipX - targetCenterX, 2) + Math.pow(tipY - targetCenterY, 2)) <=
+    target.value.clientWidth / 2
   ) {
     collides = true;
   }
@@ -308,3 +316,13 @@ useTransitionListener(() => {
   rotateBow(targetRect.x + targetRect.width / 2, targetRect.y + targetRect.height / 2);
 });
 </script>
+
+<style scoped lang="scss">
+ul > li {
+  @apply flex items-center gap-2;
+
+  .material-symbols-rounded {
+    @apply text-xl;
+  }
+}
+</style>
