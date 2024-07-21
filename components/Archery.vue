@@ -1,11 +1,17 @@
 <template>
   <Transition>
-    <HeroSection v-if="!gameActive" class="flex flex-col items-center justify-center gap-4 text-center">
+    <HeroSection
+      v-if="!gameActive"
+      class="flex select-none flex-col items-center justify-center gap-4 text-center"
+    >
       <h1 class="mb-4 font-title text-6xl uppercase leading-snug tracking-tight">Archery</h1>
       <p class="text-sm text-primary-500">Time for a small game?</p>
       <StyledButton @click="startGame" primary>Play archery</StyledButton>
     </HeroSection>
-    <HeroSection v-else class="flex w-full flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col">
+    <HeroSection
+      v-else
+      class="flex w-full select-none flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col"
+    >
       <div class="w-full">
         <h1 class="mb-4 font-title text-4xl uppercase leading-snug tracking-tight">Archery</h1>
         <ul v-if="gameActive" class="font-title text-sm uppercase leading-relaxed tracking-tight">
@@ -37,7 +43,7 @@
       />
 
       <div v-if="gameActive" ref="target" class="relative max-lg:mt-auto lg:ml-auto">
-        <div class="min-h-16 min-w-16 rounded-full border-2 border-primary-950/10"></div>
+        <div class="size-24 rounded-full border-4 border-primary-950/25"></div>
       </div>
     </HeroSection>
   </Transition>
@@ -160,9 +166,10 @@ function renderBow() {
     : getTension();
 
   if (!shooting && tensionStart !== -1) {
+    const size = 96 - 48 * tensionProgress;
     const targetRing = target.value.firstElementChild;
-    targetRing.style.width = `${24 * (4 * tensionProgress)}px`;
-    targetRing.style.height = `${24 * (4 * tensionProgress)}px`;
+    targetRing.style.width = `${size}px`;
+    targetRing.style.height = `${size}px`;
   }
 
   const radius = (height - BOW_WIDTH) / 2;
