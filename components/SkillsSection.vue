@@ -72,6 +72,8 @@ function rotateBow(x, y) {
 
 useEventListener("mousemove", (event) => rotateBow(event.clientX, event.clientY));
 useEventListener("touchmove", (event) => {
+  if (tensionStart === -1) return;
+
   rotateBow(event.touches[0].clientX, event.touches[0].clientY);
 
   event.preventDefault();
