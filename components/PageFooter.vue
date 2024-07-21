@@ -5,12 +5,12 @@
     <div class="flex grow flex-col uppercase tracking-wider *:leading-relaxed md:max-w-sm">
       <div class="mb-8 flex w-full gap-8 max-[320px]:gap-4">
         <NuxtImg
-          src="brand/banner.svg"
+          src="brand/logo.svg"
           alt="Banner Logo"
-          width="5952"
+          width="1024"
           height="1024"
           loading="lazy"
-          class="mr-auto w-24"
+          class="mr-auto w-5"
         />
         <a href="tel:+491758842377" aria-label="Phone" class="contact-option">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="130 -830 700 700" class="aspect-square">
