@@ -23,8 +23,8 @@
       class="flex select-none flex-col items-center justify-center gap-4 text-center"
     >
       <h1 class="mb-4 font-title text-6xl uppercase leading-snug tracking-tight">Archery</h1>
-      <p class="text-sm text-primary-500">Time for a small game?</p>
-      <StyledButton @click="startGame" primary>Play archery</StyledButton>
+      <StyledButton @click="startGame" primary>Play now</StyledButton>
+      <p class="text-sm text-primary-500">No download required</p>
     </HeroSection>
     <HeroSection
       v-else
