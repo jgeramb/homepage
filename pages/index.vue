@@ -48,8 +48,6 @@
 </template>
 
 <script setup>
-import ImageAsset from "~/components/ImageAsset.vue";
-
 useHeadSEO(true, "Justus Geramb", "Justus Geramb", "Dreamer. Entrepreneur. Developer.", "/");
 </script>
 
