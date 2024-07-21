@@ -53,7 +53,11 @@ function moveCursor(listItem) {
   cursorTween?.kill();
 
   if (!listItem || (listItem && wasHidden)) {
-    cursorTween = gsap.to(cursor.value, { opacity: wasHidden ? 1 : 0, duration: 0.5, ease: "power3.inOut" });
+    cursorTween = gsap.to(cursor.value, {
+      opacity: listItem && wasHidden ? 1 : 0,
+      duration: 0.5,
+      ease: "power3.inOut"
+    });
 
     if (!listItem) return;
   }
