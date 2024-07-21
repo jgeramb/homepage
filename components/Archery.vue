@@ -299,8 +299,8 @@ function renderArrow() {
   if (
     tipX >= logoRect.x &&
     tipX <= logoRect.x + logoRect.width &&
-    tipY >= logoRect.y &&
-    tipY <= logoRect.y + logoRect.height
+    tipY >= logoRect.y + window.scrollY &&
+    tipY <= logoRect.y + window.scrollY + logoRect.height
   ) {
     shooting = false;
 
