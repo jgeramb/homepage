@@ -1,4 +1,21 @@
 <template>
+  <Teleport to="body">
+    <ImageAsset
+      id="dinosaur"
+      src="dinosaur.png"
+      width="571"
+      height="764"
+      sizes="256px"
+      draggable="false"
+      class="pointer-events-none fixed left-8 top-0 z-50 w-[256px] -translate-y-full"
+    />
+    <GoogleIcon
+      id="hit"
+      class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
+    >
+      close
+    </GoogleIcon>
+  </Teleport>
   <Transition>
     <HeroSection
       v-if="!gameActive"
@@ -20,23 +37,6 @@
           <li><GoogleIcon>mouse</GoogleIcon>Release <span class="opacity-50">to shoot</span></li>
         </ul>
       </div>
-      <Teleport to="body">
-        <ImageAsset
-          id="dinosaur"
-          src="dinosaur.png"
-          width="571"
-          height="764"
-          sizes="256px"
-          draggable="false"
-          class="pointer-events-none fixed left-8 top-0 z-50 w-[256px] -translate-y-full"
-        />
-        <GoogleIcon
-          id="hit"
-          class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
-        >
-          close
-        </GoogleIcon>
-      </Teleport>
       <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-72" />
       <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute z-50" />
       <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
