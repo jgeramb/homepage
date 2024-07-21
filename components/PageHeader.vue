@@ -18,12 +18,8 @@
       </p>
     </NuxtLink>
     <a id="menu-icon" role="button" aria-label="Toggle menu" class="md:hidden" @click="toggleMenu">
-      <div class="line" :class="{ 'translate-y-[0.5rem] -rotate-45': menuOpen }"></div>
-      <div
-        class="line transition-opacity duration-500 will-change-[opacity]"
-        :class="{ 'opacity-0': menuOpen }"
-      ></div>
-      <div class="line" :class="{ '-translate-y-[0.5rem] rotate-45': menuOpen }"></div>
+      <div class="line" :class="{ 'translate-y-[0.3125rem] -rotate-45': menuOpen }"></div>
+      <div class="line" :class="{ '-translate-y-[0.3125rem] rotate-45': menuOpen }"></div>
     </a>
     <nav ref="navigation" class="max-md:col-span-full max-md:h-full md:justify-self-center">
       <div
@@ -161,10 +157,10 @@ if (import.meta.client) {
 
 <style scoped lang="scss">
 #menu-icon {
-  @apply flex h-[1.25rem] w-6 flex-col items-stretch justify-between justify-self-end md:hidden;
+  @apply flex h-[1.25rem] w-7 flex-col items-stretch justify-around justify-self-end md:hidden;
 
   .line {
-    @apply h-1 rounded-full bg-primary-950 odd:transition-transform odd:duration-500 odd:will-change-transform;
+    @apply h-[0.21875rem] bg-primary-950 transition-transform duration-500 will-change-transform;
   }
 }
 
