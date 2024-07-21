@@ -20,29 +20,23 @@
           <li><GoogleIcon>mouse</GoogleIcon>Release <span class="opacity-50">to shoot</span></li>
         </ul>
       </div>
+      <ImageAsset
+        id="dinosaur"
+        src="dinosaur.png"
+        width="571"
+        height="764"
+        sizes="256px"
+        class="fixed left-8 top-0 z-50 w-[256px] -translate-y-full"
+      />
       <GoogleIcon
-        v-if="gameActive"
         id="hit"
         class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
       >
         close
       </GoogleIcon>
-      <canvas
-        v-if="gameActive"
-        ref="bowCanvas"
-        width="354"
-        height="354"
-        class="touch-none max-lg:mx-auto max-lg:size-72"
-      />
-      <canvas
-        v-if="gameActive"
-        ref="arrowCanvas"
-        width="168"
-        height="10"
-        class="pointer-events-none absolute"
-      />
-
-      <div v-if="gameActive" ref="target" class="relative max-lg:mt-auto lg:ml-auto">
+      <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-72" />
+      <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute z-50" />
+      <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
         <div class="size-24 rounded-full border-4 border-primary-950/25"></div>
       </div>
     </HeroSection>
@@ -295,6 +289,44 @@ function renderArrow() {
     target.value.clientWidth / 2
   ) {
     collides = true;
+  }
+
+  const logoRect = document.querySelector("header img").getBoundingClientRect();
+
+  if (
+    tipX >= logoRect.x &&
+    tipX <= logoRect.x + logoRect.width &&
+    tipY >= logoRect.y &&
+    tipY <= logoRect.y + logoRect.height
+  ) {
+    shooting = false;
+
+    const dinosaur = document.getElementById("dinosaur");
+    const padding = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
+
+    gsap.fromTo(
+      dinosaur,
+      {
+        top: padding,
+        opacity: 0
+      },
+      {
+        duration: 1,
+        top: window.innerHeight - padding,
+        opacity: 1,
+        ease: "expo.in",
+        onComplete: () =>
+          gsap.to(dinosaur, {
+            duration: 1,
+            delay: 0.5,
+            opacity: 0,
+            ease: "power3.inOut"
+          })
+      }
+    );
+
+    renderAll();
+    return;
   }
 
   if (shooting && collides) {
