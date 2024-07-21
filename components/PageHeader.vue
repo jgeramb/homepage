@@ -148,7 +148,14 @@ function updateDocumentHeight() {
 
 if (import.meta.client) {
   useTransitionListener(updateDocumentHeight);
-  useEventListener("resize", updateDocumentHeight, true);
+  useEventListener(
+    "resize",
+    () => {
+      updateDocumentHeight();
+      updateActiveLink();
+    },
+    true
+  );
 }
 </script>
 
