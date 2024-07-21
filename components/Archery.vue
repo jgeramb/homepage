@@ -15,6 +15,7 @@
     >
       close
     </GoogleIcon>
+    <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute z-50" />
   </Teleport>
   <Transition>
     <HeroSection
@@ -38,7 +39,6 @@
         </ul>
       </div>
       <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-72" />
-      <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute z-50" />
       <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
         <div class="size-24 rounded-full border-4 border-primary-950/25"></div>
       </div>
