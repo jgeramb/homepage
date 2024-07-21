@@ -1,6 +1,8 @@
 <template>
-  <div class="flex flex-col gap-8 *:px-8">
-    <HeroSection class="grid gap-x-24 gap-y-16 *:w-full lg:grid-cols-[4fr_3fr] lg:items-center">
+  <div class="flex flex-col gap-8">
+    <HeroSection
+      class="grid gap-x-24 gap-y-16 *:w-full lg:grid-cols-[4fr_3fr] lg:items-center lg:px-8 lg:pt-8"
+    >
       <ImageAsset
         src="portrait-mobile.jpeg"
         alt="Justus Geramb"
@@ -11,7 +13,7 @@
         loading="eager"
         class="h-[28rem] object-cover lg:hidden"
       />
-      <div class="flex flex-col items-start gap-4 !leading-relaxed max-lg:pb-8 md:text-lg">
+      <div class="flex flex-col items-start gap-4 !leading-relaxed max-lg:px-8 max-lg:pb-8 md:text-lg">
         <h2 class="text-2xl leading-snug lg:text-4xl">
           Hi, my name is
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
@@ -34,10 +36,10 @@
         sizes="432px"
         loading="eager"
         preload
-        class="max-lg:hidden"
+        class="rounded-xl max-lg:hidden"
       />
     </HeroSection>
-    <div class="border-y border-primary-200 py-8">
+    <div class="border-y border-primary-200 p-8">
       <FullWidthTitle class="uppercase">
         Dreamer<span class="text-accent">Entrepreneur</span>Developer
       </FullWidthTitle>
@@ -53,6 +55,6 @@ useHeadSEO(true, "Justus Geramb", "Justus Geramb", "Dreamer. Entrepreneur. Devel
 
 <style scoped lang="scss">
 img {
-  @apply rounded-xl shadow-md shadow-primary-950/25;
+  @apply shadow-md shadow-primary-950/25;
 }
 </style>

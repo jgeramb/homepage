@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-8 *:px-8">
+  <div class="flex flex-col gap-8 pt-8 *:px-8">
     <Archery />
     <div class="border-t border-t-primary-200 pt-8">
       <blockquote>
