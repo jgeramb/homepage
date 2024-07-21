@@ -1,25 +1,46 @@
 <template>
-  <HeroSection class="flex w-full flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col">
-    <div class="w-full">
-      <h1 class="mb-4 font-title text-4xl uppercase leading-snug tracking-tight">Archery</h1>
-      <ul class="font-title text-sm uppercase leading-relaxed tracking-tight">
-        <li><GoogleIcon>left_click</GoogleIcon>Press and hold <span class="opacity-50">to charge</span></li>
-        <li><GoogleIcon>drag_click</GoogleIcon>Drag <span class="opacity-50">to aim</span></li>
-        <li><GoogleIcon>mouse</GoogleIcon>Release <span class="opacity-50">to shoot</span></li>
-      </ul>
-    </div>
-    <GoogleIcon
-      id="hit"
-      class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
-    >
-      close
-    </GoogleIcon>
-    <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-72" />
-    <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute" />
-    <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
-      <div class="min-h-16 min-w-16 rounded-full border-2 border-primary-950/10"></div>
-    </div>
-  </HeroSection>
+  <Transition>
+    <HeroSection v-if="!gameActive" class="flex flex-col items-center justify-center gap-4 text-center">
+      <h1 class="mb-4 font-title text-6xl uppercase leading-snug tracking-tight">Archery</h1>
+      <p class="text-sm text-primary-500">Time for a small game?</p>
+      <StyledButton @click="startGame" primary>Play archery</StyledButton>
+    </HeroSection>
+    <HeroSection v-else class="flex w-full flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col">
+      <div class="w-full">
+        <h1 class="mb-4 font-title text-4xl uppercase leading-snug tracking-tight">Archery</h1>
+        <ul v-if="gameActive" class="font-title text-sm uppercase leading-relaxed tracking-tight">
+          <li><GoogleIcon>left_click</GoogleIcon>Press and hold <span class="opacity-50">to charge</span></li>
+          <li><GoogleIcon>drag_click</GoogleIcon>Drag <span class="opacity-50">to aim</span></li>
+          <li><GoogleIcon>mouse</GoogleIcon>Release <span class="opacity-50">to shoot</span></li>
+        </ul>
+      </div>
+      <GoogleIcon
+        v-if="gameActive"
+        id="hit"
+        class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
+      >
+        close
+      </GoogleIcon>
+      <canvas
+        v-if="gameActive"
+        ref="bowCanvas"
+        width="354"
+        height="354"
+        class="touch-none max-lg:mx-auto max-lg:size-72"
+      />
+      <canvas
+        v-if="gameActive"
+        ref="arrowCanvas"
+        width="168"
+        height="10"
+        class="pointer-events-none absolute"
+      />
+
+      <div v-if="gameActive" ref="target" class="relative max-lg:mt-auto lg:ml-auto">
+        <div class="min-h-16 min-w-16 rounded-full border-2 border-primary-950/10"></div>
+      </div>
+    </HeroSection>
+  </Transition>
 </template>
 
 <script setup>
@@ -30,6 +51,7 @@ const BOW_WIDTH = 4,
   TENSION_DURATION = 1500,
   SHOOT_DURATION = 500,
   MAX_PX_PER_SECOND = 2000;
+const gameActive = ref(false);
 
 const bowCanvas = ref();
 const arrowCanvas = ref();
@@ -39,6 +61,7 @@ const target = ref();
 let tensionStart = -1;
 
 function beginTension() {
+  if (!gameActive.value) return;
   if (shooting) return;
 
   tensionStart = Date.now();
@@ -51,22 +74,12 @@ function getTension() {
   return tensionStart === -1 ? 0 : easeOutCubic(Date.now() - tensionStart, 0, 1, TENSION_DURATION);
 }
 
-useEventListener("mousedown", beginTension, true, bowCanvas);
-useEventListener(
-  "touchstart",
-  (event) => {
-    beginTension();
-
-    event.preventDefault();
-  },
-  false,
-  bowCanvas
-);
-
 // rotation
 let bowAngle = 0;
 
 function rotateBow(x, y) {
+  if (!gameActive.value) return;
+
   const canvasRect = bowCanvas.value.getBoundingClientRect();
   const bowX = canvasRect.x + canvasRect.width / 2;
   const bowY = canvasRect.y + canvasRect.height / 2;
@@ -268,7 +281,7 @@ function renderArrow() {
 
   const targetRect = target.value.getBoundingClientRect();
   const targetCenterX = targetRect.x + targetRect.width / 2;
-  const targetCenterY = targetRect.y + targetRect.height / 2;
+  const targetCenterY = targetRect.y + targetRect.height / 2 + window.scrollY;
 
   if (
     Math.sqrt(Math.pow(tipX - targetCenterX, 2) + Math.pow(tipY - targetCenterY, 2)) <=
@@ -283,7 +296,7 @@ function renderArrow() {
     const hit = document.getElementById("hit");
     hit.style.visibility = "visible";
     hit.style.left = `${tipX}px`;
-    hit.style.top = `${tipY + window.scrollY}px`;
+    hit.style.top = `${tipY}px`;
 
     gsap.from(hit, {
       scale: 1.5,
@@ -300,24 +313,57 @@ function renderArrow() {
 }
 
 function hideHit() {
+  if (!gameActive.value) return;
+
   document.getElementById("hit").style.visibility = "hidden";
 }
 
 watch(() => useRoute().path, hideHit);
 
 useEventListener("resize", () => {
+  if (!gameActive.value) return;
+
   hideHit();
   renderAll();
 });
 
-useTransitionListener(() => {
-  const targetRect = target.value.getBoundingClientRect();
+function startGame() {
+  gameActive.value = true;
 
-  rotateBow(targetRect.x + targetRect.width / 2, targetRect.y + targetRect.height / 2);
-});
+  setTimeout(() => {
+    const targetRect = target.value.getBoundingClientRect();
+
+    rotateBow(targetRect.x + targetRect.width / 2, targetRect.y + targetRect.height / 2);
+
+    bowCanvas.value.addEventListener("mousedown", beginTension, true);
+    bowCanvas.value.addEventListener("touchstart", (event) => {
+      beginTension();
+
+      event.preventDefault();
+    });
+  }, 525);
+}
 </script>
 
 <style scoped lang="scss">
+section {
+  @apply will-change-[opacity];
+}
+
+.v-enter-active,
+.v-leave-active {
+  @apply transition-opacity duration-500;
+}
+
+.v-enter-active {
+  @apply delay-500;
+}
+
+.v-enter-from,
+.v-leave-to {
+  @apply opacity-0;
+}
+
 ul > li {
   @apply flex items-center gap-2;
 

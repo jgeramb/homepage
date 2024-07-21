@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-8 *:px-8">
-    <SkillsSection />
+    <Archery />
     <div class="border-t border-t-primary-200 pt-8">
       <blockquote>
         <p class="text-[min(5.5vw,3.25rem)] !leading-relaxed *:opacity-50">
