@@ -37,8 +37,7 @@ function beginTension() {
 
   tensionStart = Date.now();
 
-  document.getElementById("hit").style.visibility = "hidden";
-
+  hideHit();
   renderAll();
 }
 
@@ -290,9 +289,14 @@ function renderArrow() {
   if ((tensionStart !== -1 && tensionProgress < 1) || shooting) requestAnimationFrame(renderArrow);
 }
 
-useEventListener("resize", () => {
+function hideHit() {
   document.getElementById("hit").style.visibility = "hidden";
+}
 
+watch(() => useRoute().path, hideHit);
+
+useEventListener("resize", () => {
+  hideHit();
   renderAll();
 });
 
