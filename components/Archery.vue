@@ -357,7 +357,7 @@ function renderArrow() {
 function hideHit() {
   if (!gameActive.value) return;
 
-  document.getElementById("hit").style.visibility = "hidden";
+  document.getElementById("hit").style.removeProperty("visibility");
 }
 
 watch(() => useRoute().path, hideHit);
@@ -383,7 +383,7 @@ function startGame() {
 
       event.preventDefault();
     });
-  }, 525);
+  }, 510);
 }
 </script>
 
