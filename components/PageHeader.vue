@@ -96,6 +96,13 @@ const ITEM_FROM = { opacity: 0, y: -12 };
 const ITEM_TO = { opacity: 1, y: 0 };
 let menuTween, scrollY;
 
+function closeMenu() {
+  menuOpen.value = false;
+
+  document.body.style.removeProperty("overflow");
+  window.scrollTo({ top: scrollY, behavior: "smooth" });
+}
+
 function toggleMenu() {
   const shouldExpand = !menuOpen.value;
   const items = [...gsap.utils.toArray(navigation.value.getElementsByTagName("li")), contactButton.value];
@@ -108,12 +115,7 @@ function toggleMenu() {
     delay: shouldExpand ? 0.375 : 0,
     ease: shouldExpand ? "power3.out" : "power3.in",
     onComplete: () => {
-      if (!shouldExpand) {
-        menuOpen.value = false;
-
-        document.body.style.removeProperty("overflow");
-        window.scrollTo({ top: scrollY, behavior: "smooth" });
-      }
+      if (!shouldExpand) closeMenu();
     }
   });
 
@@ -149,6 +151,8 @@ if (import.meta.client) {
     () => {
       updateDocumentHeight();
       updateActiveLink();
+
+      if (menuOpen.value) closeMenu();
     },
     true
   );
