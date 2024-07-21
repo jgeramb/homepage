@@ -2,7 +2,7 @@
   <HeroSection class="flex w-full items-center justify-between gap-x-24 max-lg:flex-col">
     <GoogleIcon
       id="hit"
-      class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-primary-100 p-1 text-primary-950"
+      class="invisible absolute z-50 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary-200 bg-accent p-1 text-primary-50"
     >
       close
     </GoogleIcon>
@@ -10,20 +10,19 @@
     <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute" />
     <div ref="target" class="relative max-lg:mb-[calc(5*48px/2)] lg:mr-[calc(5*48px/2)]">
       <div
-        v-for="index in 5"
-        :key="index"
-        class="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary-950/50"
-        :style="{ width: `${index * 48}px`, height: `${index * 48}px` }"
+        class="absolute left-0 top-0 min-h-16 min-w-16 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary-950/10"
       ></div>
     </div>
   </HeroSection>
 </template>
 
 <script setup>
+import { gsap } from "gsap";
+
 const BOW_WIDTH = 4,
   BOW_ANGLE = Math.PI / 3,
   TENSION_DURATION = 1500,
-  SHOOT_DURATION = 300,
+  SHOOT_DURATION = 500,
   MAX_PX_PER_SECOND = 2000;
 
 const bowCanvas = ref();
@@ -37,6 +36,8 @@ function beginTension() {
   if (shooting) return;
 
   tensionStart = Date.now();
+
+  document.getElementById("hit").style.visibility = "hidden";
 
   renderAll();
 }
@@ -99,10 +100,6 @@ function arrowY(time) {
   return shootYVelocity * delta + 0.5 * 540 * Math.pow(delta, 2);
 }
 
-function collidesWithRect(x, y, rect) {
-  return x > rect.x && x < rect.x + rect.width && y > rect.y && y < rect.y + rect.height;
-}
-
 function shoot() {
   if (tensionStart === -1) return;
 
@@ -141,6 +138,13 @@ function renderBow() {
   const tensionProgress = shooting
     ? shootTension - easeOutElastic(Date.now() - shootTime, 0, shootTension, SHOOT_DURATION / shootTension)
     : getTension();
+
+  if (!shooting && tensionStart !== -1) {
+    const targetRing = target.value.firstElementChild;
+    targetRing.style.width = `${24 * (4 * tensionProgress)}px`;
+    targetRing.style.height = `${24 * (4 * tensionProgress)}px`;
+  }
+
   const radius = (height - BOW_WIDTH) / 2;
   const bowOffsetX = (radius - width) / 2;
   const yFactor = 1 - 0.35 * tensionProgress;
@@ -255,13 +259,28 @@ function renderArrow() {
     tipY = 0;
   }
 
-  if (collides) {
+  const { x: targetX, y: targetY } = target.value.getBoundingClientRect();
+
+  if (
+    Math.sqrt(Math.pow(tipX - targetX, 2) + Math.pow(tipY - targetY, 2)) <=
+    target.value.lastElementChild.clientWidth / 2
+  ) {
+    collides = true;
+  }
+
+  if (shooting && collides) {
     shooting = false;
 
     const hit = document.getElementById("hit");
     hit.style.visibility = "visible";
     hit.style.left = `${tipX}px`;
     hit.style.top = `${tipY + window.scrollY}px`;
+
+    gsap.from(hit, {
+      scale: 1.5,
+      duration: 0.5,
+      ease: "elastic.out"
+    });
 
     renderAll();
     return;
