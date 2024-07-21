@@ -13,23 +13,27 @@
           class="mr-auto w-5"
         />
         <a href="tel:+491758842377" aria-label="Phone" class="contact-option">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="130 -830 700 700" class="aspect-square">
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M789-130q-120 0-238.5-53.25t-216-151.25q-98-97.5-151.25-216T130-789q0-17.5 11.75-29.25T171-830h155q14 0 24.25 8.75T363-799l26 136q2 13.5-1.25 24.25T377-620l-94.5 96q20.5 37 47.25 71t58.75 65.5q30 30 63.75 56.5T524-282l95-94q8.5-8.5 20-12t24-2l135 27q14 3.5 23 14.25t9 23.75v154q0 17.5-11.75 29.25T789-130Z"
+              d="M11.3205 7.09378L7.10832 1.47754L1.87695 6.7089L2.0386 7.27467C4.13352 14.6069 9.3932 19.8666 16.7254 21.9615L17.2912 22.1231L22.5225 16.8918L16.9063 12.6796L14.75 14.8358C13.6079 14.3485 12.4566 13.5422 11.4572 12.5428C10.4578 11.5434 9.65161 10.3922 9.16425 9.25003L11.3205 7.09378Z"
             />
           </svg>
         </a>
         <a href="https://wa.me/+491758842377" aria-label="WhatsApp" class="contact-option">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="90 -871 780 723.68" class="aspect-[539/500]">
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="m244-249-90 90q-18 18-41 8.25T90-185.5V-796q0-31 22-53t53-22h630q31 0 53 22t22 53v472q0 31-22 53t-53 22H244Zm39.5-156h236q15.5 0 26.5-11t11-26.5q0-15.5-11-26.5t-26.5-11h-236q-15.5 0-26.5 11t-11 26.5q0 15.5 11 26.5t26.5 11Zm0-118h393q15.5 0 26.5-11t11-26.5q0-15.5-11-26.5t-26.5-11h-393q-15.5 0-26.5 11t-11 26.5q0 15.5 11 26.5t26.5 11Zm0-118h393q15.5 0 26.5-11t11-26.5q0-15.5-11-26.5t-26.5-11h-393q-15.5 0-26.5 11t-11 26.5q0 15.5 11 26.5t26.5 11Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M2 3H22V19H6.99607L2 22.0018V3ZM18 10H6V8H18V10ZM6 14H12V12H6V14Z"
             />
           </svg>
         </a>
         <a href="mailto:admin@justix.dev" aria-label="E-Mail" class="contact-option">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="90 -791 780 622" class="aspect-[627/500]">
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M165-169q-31 0-53-22t-22-53v-472q0-31 22-53t53-22h630q31 0 53 22t22 53v472q0 31-22 53t-53 22H165Zm315-281q5 0 9.75-1.5t9.75-4l280.5-176q7-5 11-11.75t4-15.25q0-18.5-15.75-28.25t-32.75.75L480-519 213.5-686q-16-9.5-32.25-.5t-16.25 28q0 9 4.25 16t10.75 11l280.5 176q5 2.5 9.75 4T480-450Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M22 4H2V6.35606L12 10.9015L22 6.35605V4ZM22 8.55296L12 13.0984L2 8.55298V20H22V8.55296Z"
             />
           </svg>
         </a>
@@ -69,7 +73,7 @@
   @apply flex items-center gap-2;
 
   svg {
-    @apply h-5 fill-primary-950 transition-transform duration-300 ease-in-out will-change-transform;
+    @apply size-5 fill-primary-950 transition-transform duration-300 ease-in-out will-change-transform;
   }
 
   &:hover svg {
