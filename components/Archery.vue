@@ -15,7 +15,12 @@
     >
       close
     </GoogleIcon>
-    <canvas ref="arrowCanvas" width="168" height="10" class="pointer-events-none absolute z-50" />
+    <canvas
+      ref="arrowCanvas"
+      width="168"
+      height="10"
+      class="pointer-events-none absolute z-50 max-lg:w-[7.35rem]"
+    />
   </Teleport>
   <Transition>
     <HeroSection
@@ -38,7 +43,7 @@
           <li><GoogleIcon>mouse</GoogleIcon>Release <span class="opacity-50">to shoot</span></li>
         </ul>
       </div>
-      <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-72" />
+      <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-64" />
       <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
         <div class="size-24 rounded-full border-4 border-primary-950/25"></div>
       </div>
@@ -215,21 +220,22 @@ function renderArrow() {
 
   // move arrow canvas
   const { x: bowX, y: bowY, width: bowWidth, height: bowHeight } = bowCanvas.value.getBoundingClientRect();
-  const { width, height } = arrowCanvas.value;
-  const canvasX = bowX + (bowWidth - width) / 2;
-  const canvasY = bowY + (bowHeight - height) / 2 + window.scrollY;
+  const arrowWidth = arrowCanvas.value.clientWidth;
+  const arrowHeight = arrowCanvas.value.clientHeight;
+  const canvasX = bowX + (bowWidth - arrowWidth) / 2;
+  const canvasY = bowY + (bowHeight - arrowHeight) / 2 + window.scrollY;
 
   const radius = (bowHeight - BOW_WIDTH) / 2;
-  const arrowLength = 0.96 * radius;
   const tensionOffset = 0.35 * tensionProgress * radius;
-  const x = canvasX + Math.cos(angle) * (arrowLength / 2 - tensionOffset) + shootX;
-  const y = canvasY + Math.sin(angle) * (arrowLength / 2 - tensionOffset) + shootY;
+  const x = canvasX + Math.cos(angle) * (arrowWidth / 2 - tensionOffset) + shootX;
+  const y = canvasY + Math.sin(angle) * (arrowWidth / 2 - tensionOffset) + shootY;
 
   arrowCanvas.value.style.left = `${x}px`;
   arrowCanvas.value.style.top = `${y}px`;
   arrowCanvas.value.style.transform = `rotate(${angle}rad)`;
 
   // begin rendering
+  const { width, height } = arrowCanvas.value;
   const context = arrowCanvas.value.getContext("2d");
 
   context.setTransform(1, 0, 0, 1, 0, 0);
@@ -239,7 +245,7 @@ function renderArrow() {
   // arrow
   context.beginPath();
   context.moveTo(0, 0);
-  context.lineTo(arrowLength - 10, 0);
+  context.lineTo(width - 10, 0);
   context.strokeStyle = "#18181b";
   context.lineWidth = 2;
   context.stroke();
@@ -252,16 +258,16 @@ function renderArrow() {
   context.fill();
 
   context.beginPath();
-  context.moveTo(arrowLength, 0);
-  context.lineTo(arrowLength - 10, 5);
-  context.lineTo(arrowLength - 10, -5);
+  context.moveTo(width, 0);
+  context.lineTo(width - 10, 5);
+  context.lineTo(width - 10, -5);
   context.fillStyle = "#09090b";
   context.fill();
 
   // collision
   let collides = false;
-  let tipX = x + arrowLength / 2 + Math.cos(angle) * (arrowLength / 2);
-  let tipY = y + height / 2 + Math.sin(angle) * (arrowLength / 2);
+  let tipX = x + arrowWidth / 2 + Math.cos(angle) * (arrowWidth / 2);
+  let tipY = y + arrowHeight / 2 + Math.sin(angle) * (arrowWidth / 2);
 
   if (tipX >= document.documentElement.clientWidth) {
     collides = true;
@@ -383,7 +389,7 @@ function startGame() {
 
       event.preventDefault();
     });
-  }, 510);
+  }, 525);
 }
 </script>
 
