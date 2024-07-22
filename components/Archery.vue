@@ -34,6 +34,7 @@
     </HeroSection>
     <HeroSection
       v-else
+      id="game-container"
       class="flex w-full select-none flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col"
     >
       <div class="w-full">
@@ -280,9 +281,12 @@ function renderArrow() {
     tipX = 0;
   }
 
-  if (tipY >= document.documentElement.clientHeight) {
+  const padding = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
+  const gameContainer = document.getElementById("game-container");
+
+  if (tipY >= gameContainer.getBoundingClientRect().bottom + window.scrollY + padding) {
     collides = true;
-    tipY = document.documentElement.clientHeight;
+    tipY = gameContainer.getBoundingClientRect().bottom + window.scrollY + padding;
   }
 
   if (tipY <= 0) {
@@ -312,7 +316,6 @@ function renderArrow() {
     shooting.value = false;
 
     const dinosaur = document.getElementById("dinosaur");
-    const padding = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
 
     gsap.fromTo(
       dinosaur,
