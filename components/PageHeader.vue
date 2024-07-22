@@ -103,7 +103,7 @@ let menuTween, scrollY;
 function closeMenu() {
   menuOpen.value = false;
 
-  document.body.style.removeProperty("overflow");
+  document.documentElement.style.removeProperty("overflow");
   window.scrollTo({ top: scrollY, behavior: "smooth" });
 }
 
@@ -129,7 +129,7 @@ function toggleMenu() {
     scrollY = window.scrollY;
 
     window.scrollTo({ top: 0, behavior: "smooth" });
-    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   }
 }
 
