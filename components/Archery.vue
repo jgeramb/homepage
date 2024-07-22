@@ -19,7 +19,8 @@
       ref="arrowCanvas"
       width="168"
       height="10"
-      class="pointer-events-none absolute z-50 max-lg:w-[7.35rem]"
+      class="pointer-events-none absolute max-lg:w-[7.35rem]"
+      :class="{ ' z-50': shooting }"
     />
   </Teleport>
   <Transition>
@@ -70,7 +71,7 @@ let tensionStart = -1;
 
 function beginTension() {
   if (!gameActive.value) return;
-  if (shooting) return;
+  if (shooting.value) return;
 
   tensionStart = Date.now();
 
@@ -107,7 +108,7 @@ useEventListener("touchmove", (event) => {
 });
 
 // shooting
-let shooting = false;
+let shooting = ref(false);
 let shootTime = 0;
 let shootTension = 0;
 let shootAngle = 0;
@@ -131,7 +132,7 @@ function arrowY(time) {
 function shoot() {
   if (tensionStart === -1) return;
 
-  shooting = true;
+  shooting.value = true;
   shootTime = Date.now();
   shootTension = getTension();
   shootAngle = bowAngle;
@@ -163,11 +164,11 @@ function renderBow() {
   context.clearRect(-width / 2, -height / 2, width, height);
   context.rotate(bowAngle);
 
-  const tensionProgress = shooting
+  const tensionProgress = shooting.value
     ? shootTension - easeOutElastic(Date.now() - shootTime, 0, shootTension, SHOOT_DURATION / shootTension)
     : getTension();
 
-  if (!shooting && tensionStart !== -1) {
+  if (!shooting.value && tensionStart !== -1) {
     const size = 96 - 48 * tensionProgress;
     const targetRing = target.value.firstElementChild;
     targetRing.style.width = `${size}px`;
@@ -203,16 +204,16 @@ function renderBow() {
   if (
     (tensionStart !== -1 && tensionProgress < 1) ||
     Date.now() - shootTime < SHOOT_DURATION / shootTension ||
-    shooting
+    shooting.value
   )
     requestAnimationFrame(renderBow);
 }
 
 function renderArrow() {
-  const tensionProgress = shooting ? shootTension : getTension();
-  const shootX = shooting ? arrowX() : 0;
-  const shootY = shooting ? arrowY() : 0;
-  const angle = shooting
+  const tensionProgress = shooting.value ? shootTension : getTension();
+  const shootX = shooting.value ? arrowX() : 0;
+  const shootY = shooting.value ? arrowY() : 0;
+  const angle = shooting.value
     ? shootX === 0 && shootY === 0
       ? shootAngle
       : Math.atan2(shootY, shootX)
@@ -308,7 +309,7 @@ function renderArrow() {
     tipY >= logoRect.y + window.scrollY &&
     tipY <= logoRect.y + window.scrollY + logoRect.height
   ) {
-    shooting = false;
+    shooting.value = false;
 
     const dinosaur = document.getElementById("dinosaur");
     const padding = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
@@ -338,8 +339,8 @@ function renderArrow() {
     return;
   }
 
-  if (shooting && collides) {
-    shooting = false;
+  if (shooting.value && collides) {
+    shooting.value = false;
 
     const hit = document.getElementById("hit");
     hit.style.visibility = "visible";
@@ -357,7 +358,7 @@ function renderArrow() {
   }
 
   // continue rendering
-  if ((tensionStart !== -1 && tensionProgress < 1) || shooting) requestAnimationFrame(renderArrow);
+  if ((tensionStart !== -1 && tensionProgress < 1) || shooting.value) requestAnimationFrame(renderArrow);
 }
 
 function hideHit() {
