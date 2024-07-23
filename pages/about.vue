@@ -7,6 +7,7 @@
         height="768"
         sizes="320px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
         fit="cover"
+        loading="eager"
         class="h-[calc(var(--vh,1vh)*100-5rem)] w-full object-cover brightness-50 md:h-[calc(var(--vh,1vh)*100-6.3125rem)]"
       />
       <div class="absolute flex flex-col gap-4 px-8 text-center">
