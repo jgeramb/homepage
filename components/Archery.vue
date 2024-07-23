@@ -3,6 +3,7 @@
     <ImageAsset
       id="dinosaur"
       src="dinosaur.png"
+      alt="Dinosaur"
       width="571"
       height="764"
       sizes="256px"
@@ -35,7 +36,7 @@
     <HeroSection
       v-else
       id="game-container"
-      class="flex w-full select-none flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col"
+      class="flex w-full select-none flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col lg:max-w-6xl"
     >
       <div class="w-full">
         <h1 class="mb-4 font-title text-4xl uppercase leading-snug tracking-tight">Archery</h1>

@@ -5,7 +5,17 @@
 </template>
 
 <script setup>
-if (import.meta.client) onMounted(() => useClientTransitionState().setTransitionComplete(true));
+if (import.meta.client) {
+  function updateDocumentHeight() {
+    document.documentElement.style.setProperty("--vh", document.documentElement.clientHeight / 100 + "px");
+  }
+
+  useEventListener("resize", updateDocumentHeight, true);
+  onMounted(() => {
+    updateDocumentHeight();
+    useClientTransitionState().setTransitionComplete(true);
+  });
+}
 </script>
 
 <style lang="scss">

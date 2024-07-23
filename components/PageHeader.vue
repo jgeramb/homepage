@@ -1,7 +1,7 @@
 <template>
   <header
     class="sticky top-0 z-40 grid grid-cols-[auto_1fr] items-center gap-y-8 overflow-hidden border-b border-b-primary-200 bg-primary-100/75 p-8 backdrop-blur-md transition-[max-height] duration-500 will-change-[max-height] max-md:h-dvh max-md:max-h-[5rem] max-md:grid-rows-[auto_1fr] md:grid-cols-[1fr_3fr_1fr] md:gap-x-8"
-    :style="menuOpen && { maxHeight: `${documentHeight}px` }"
+    :class="{ 'max-h-[var(--vh,1vh)*100]': menuOpen }"
   >
     <NuxtLink to="/" aria-label="Return to home" class="flex gap-2">
       <NuxtImg
@@ -142,18 +142,10 @@ watch(
   }
 );
 
-const documentHeight = ref(0);
-
-function updateDocumentHeight() {
-  documentHeight.value = document.documentElement.clientHeight;
-}
-
 if (import.meta.client) {
-  useTransitionListener(updateDocumentHeight);
   useEventListener(
     "resize",
     () => {
-      updateDocumentHeight();
       updateActiveLink();
 
       if (menuOpen.value) closeMenu();
