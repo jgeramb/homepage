@@ -13,19 +13,20 @@
         loading="eager"
         class="h-[32rem] object-cover lg:hidden"
       />
-      <div class="flex flex-col items-start gap-8 max-lg:px-8">
+      <div class="flex flex-col items-start gap-4 max-lg:px-8">
         <h2 class="font-title text-3xl font-semibold !leading-snug tracking-tight md:text-6xl">
           Hi, my name is
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
           >.
         </h2>
-        <p class="text-sm !leading-relaxed lg:text-lg">
-          I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.<br />
-          <br />
+        <p class="mt-2 text-sm !leading-relaxed lg:text-lg">
+          I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
+        </p>
+        <p>
           I build blazingly fast web applications with a focus on search engine optimization and user
           experience.
         </p>
-        <StyledButton primary class="!leading-snug lg:text-lg" @click="navigateTo('/about')">
+        <StyledButton primary class="mt-8 !leading-snug lg:text-lg" @click="navigateTo('/about')">
           Learn more about me
         </StyledButton>
       </div>
