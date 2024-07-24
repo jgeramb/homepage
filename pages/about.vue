@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeroSection class="grid w-full place-items-center">
+    <HeroSection class="flex w-full items-center justify-center">
       <ImageAsset
         src="hanseforum.jpeg"
         alt="Hanseforum"
