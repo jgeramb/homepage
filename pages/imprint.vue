@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto flex max-w-6xl flex-col gap-8 px-8 pt-8">
-    <h1 class="font-title text-4xl uppercase leading-snug tracking-tight">Imprint</h1>
+    <h1 class="font-title text-3xl font-semibold leading-snug tracking-tight lg:text-6xl">Imprint</h1>
     <section>
       <h2>Information according to § 5 TMG</h2>
       <p>
