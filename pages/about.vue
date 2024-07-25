@@ -28,9 +28,9 @@
     </div>
     <div
       id="skills"
-      class="mx-auto flex flex-col items-center gap-16 bg-black py-24 text-primary-50 *:w-full *:max-w-6xl *:px-8"
+      class="mx-auto flex flex-col items-center gap-24 bg-black pb-4 pt-24 text-primary-50 *:w-full *:max-w-6xl *:px-8"
     >
-      <h1 class="font-title text-3xl uppercase leading-none tracking-tight max-lg:text-center lg:text-4xl">
+      <h1 class="text-center font-title text-3xl font-semibold leading-none tracking-wide lg:text-6xl">
         Skills
       </h1>
       <ul class="grid-cols-1 flex-wrap justify-between gap-16 max-lg:grid sm:grid-cols-2 lg:flex">
@@ -92,12 +92,95 @@
       fit="cover"
       :modifiers="{ position: 'top' }"
       class="-mt-2 h-[1280px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
+      @load="setUpTimeline"
     />
+    <div class="mx-auto max-w-6xl px-8 pb-16 pt-24">
+      <h2 class="font-title text-3xl font-semibold tracking-tight lg:text-6xl">Career</h2>
+      <div id="timeline" class="relative mt-16">
+        <ul class="relative flex flex-col pl-16">
+          <li>
+            <div></div>
+            <span>2024 - now</span>
+            <h3>devite UG</h3>
+            <span>Co-Founder, Full-Stack Web-Developer</span>
+          </li>
+          <li>
+            <div></div>
+            <span>2023 - 2024</span>
+            <h3>bitbliss GbR</h3>
+            <span>Founder, Software engineer</span>
+          </li>
+          <li>
+            <div></div>
+            <span>2022 - now</span>
+            <h3>duschdichtungsprofile.de</h3>
+            <span>Software engineer</span>
+          </li>
+          <li>
+            <div></div>
+            <span>2022</span>
+            <h3>Digital Masters</h3>
+            <span>Internship</span>
+          </li>
+          <li>
+            <div></div>
+            <span>2021</span>
+            <h3>CoreMedia</h3>
+            <span>Internship</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 useHeadSEO(true, "About • Justus Geramb", "About", "My career as a software developer.", "/about");
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+function setUpTimeline() {
+  const timeline = document.querySelector("#timeline");
+  const items = timeline.lastElementChild.children;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let isFadingIn = false;
+  let queue = [];
+
+  Array.from(items).forEach((item) =>
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top 80%",
+      onEnter() {
+        function animate() {
+          gsap.to(item.firstElementChild, {
+            maxHeight: item.scrollHeight,
+            duration: 0.5,
+            delay: 0.25,
+            ease: "linear",
+            onComplete() {
+              if (queue.length > 0) queue.shift()();
+              else isFadingIn = false;
+            }
+          });
+          gsap.to(item, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "expo.in"
+          });
+        }
+
+        if (!isFadingIn) {
+          animate();
+
+          isFadingIn = true;
+        } else queue.push(animate);
+      }
+    })
+  );
+}
 </script>
 
 <style lang="scss" scoped>
@@ -109,7 +192,35 @@ useHeadSEO(true, "About • Justus Geramb", "About", "My career as a software de
   }
 
   span {
-    @apply text-xl;
+    @apply mt-2 text-xl;
+  }
+}
+
+#timeline li {
+  @apply relative flex flex-col pb-8 opacity-0 last:pb-0;
+
+  &:first-child > div {
+    @apply mt-1.5 before:top-0;
+  }
+
+  &:last-child > div {
+    @apply h-3.5;
+  }
+
+  > div {
+    @apply absolute -left-16 h-full max-h-0 w-px overflow-y-clip overflow-x-visible bg-primary-900;
+
+    &::before {
+      @apply absolute left-0 top-1.5 ml-px size-2 -translate-x-1/2 rounded-full bg-primary-800 content-[''];
+    }
+  }
+
+  > span:first-of-type {
+    @apply text-sm text-primary-500;
+  }
+
+  > h3 {
+    @apply mt-2 font-title text-lg font-semibold leading-snug;
   }
 }
 </style>
