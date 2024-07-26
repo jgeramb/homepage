@@ -144,7 +144,6 @@ function setUpTimeline() {
           gsap.to(item.firstElementChild, {
             maxHeight: item.scrollHeight,
             duration: 0.5,
-            delay: 0.25,
             ease: "linear",
             onStart: () => (item.firstElementChild.style.opacity = 1),
             onComplete() {
