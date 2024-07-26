@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-const props = defineProps({ rating: Number });
+const props = defineProps({ rating: String });
 const decimalPlaces = computed(() => props.rating % 1);
 const starPortion = computed(() => `${decimalPlaces.value * 100}%`);
 </script>
