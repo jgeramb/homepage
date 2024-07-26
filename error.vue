@@ -36,7 +36,7 @@
         <p class="mt-4 md:text-xl">
           {{
             is404
-              ? "I've looked everywhere, but couldn't find it &hellip;"
+              ? "I've looked everywhere, but couldn't find it&hellip;"
               : "Try again later or contact me if the error persists."
           }}
         </p>
