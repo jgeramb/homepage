@@ -22,11 +22,11 @@
         <p class="mt-2 text-sm !leading-relaxed lg:text-lg">
           I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
         </p>
-        <p>
+        <p class="text-sm !leading-relaxed lg:text-lg">
           I build blazingly fast web applications with a focus on search engine optimization and user
           experience.
         </p>
-        <StyledButton primary class="mt-8 !leading-snug lg:text-lg" @click="navigateTo('/about')">
+        <StyledButton primary class="mt-8 text-sm !leading-snug lg:text-lg" @click="navigateTo('/about')">
           Learn more about me
         </StyledButton>
       </div>
