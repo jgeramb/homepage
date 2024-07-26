@@ -98,44 +98,12 @@
       <h2 class="font-title text-3xl font-semibold tracking-tight lg:text-6xl">Career</h2>
       <div id="timeline" class="mt-16">
         <ul>
-          <li>
+          <li v-for="(item, index) in timelineItems" :key="index">
             <div></div>
             <div>
-              <span>2024 - now</span>
-              <h3>devite UG</h3>
-              <span>Co-Founder, Full-Stack Web-Developer</span>
-            </div>
-          </li>
-          <li>
-            <div></div>
-            <div>
-              <span>2023 - 2024</span>
-              <h3>bitbliss GbR</h3>
-              <span>Founder, Software engineer</span>
-            </div>
-          </li>
-          <li>
-            <div></div>
-            <div>
-              <span>2022 - now</span>
-              <h3>duschdichtungsprofile.de</h3>
-              <span>Software engineer</span>
-            </div>
-          </li>
-          <li>
-            <div></div>
-            <div>
-              <span>2022</span>
-              <h3>Digital Masters</h3>
-              <span>Internship</span>
-            </div>
-          </li>
-          <li>
-            <div></div>
-            <div>
-              <span>2021</span>
-              <h3>CoreMedia</h3>
-              <span>Internship</span>
+              <span>{{ item.time }}</span>
+              <h3>{{ item.title }}</h3>
+              <span>{{ item.description }}</span>
             </div>
           </li>
         </ul>
@@ -149,6 +117,14 @@ useHeadSEO(true, "About • Justus Geramb", "About", "My career as a software de
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const timelineItems = [
+  { time: "2024 - now", title: "devite UG", description: "Co-Founder, Full-Stack Web-Developer" },
+  { time: "2023 - 2024", title: "bitbliss GbR", description: "Co-Founder, Software engineer" },
+  { time: "2022 - now", title: "duschdichtungsprofile.de", description: "Software engineer" },
+  { time: "2022", title: "devite UG", description: "Internship" },
+  { time: "2021", title: "CoreMedia", description: "Internship" }
+];
 
 function setUpTimeline() {
   const timeline = document.querySelector("#timeline");
