@@ -16,7 +16,7 @@
         <p class="text-xs lg:text-lg">as a software developer</p>
       </div>
     </HeroSection>
-    <div class="mx-auto max-w-6xl px-8 py-24">
+    <section class="mx-auto max-w-6xl px-8 py-24">
       <blockquote>
         <p class="text-[min(5.5vw,3.25rem)] !leading-relaxed *:opacity-50">
           <span>&quot;</span>
@@ -25,14 +25,12 @@
         </p>
       </blockquote>
       <p class="mt-4 font-title tracking-widest md:text-lg">&horbar; that's my motto</p>
-    </div>
-    <div
+    </section>
+    <section
       id="skills"
       class="mx-auto flex flex-col items-center bg-black pb-4 pt-24 text-primary-50 *:w-full *:max-w-6xl *:px-8"
     >
-      <h1 class="text-center font-title text-4xl font-semibold leading-none tracking-wide lg:text-6xl">
-        Skills
-      </h1>
+      <h2 class="text-center">Skills</h2>
       <p class="mt-4 text-center text-primary-400 max-lg:text-sm">
         Things that I use to built first-class web apps.
       </p>
@@ -86,7 +84,7 @@
           <Rating rating="4" />
         </li>
       </ul>
-    </div>
+    </section>
     <ImageAsset
       src="bridge.jpeg"
       alt="Bridge"
@@ -97,8 +95,8 @@
       class="-mt-2 h-[1280px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
       @load="setUpTimeline"
     />
-    <div class="mx-auto max-w-6xl px-8 pb-16 pt-24">
-      <h2 class="font-title text-3xl font-semibold tracking-tight lg:text-6xl">Career</h2>
+    <section class="mx-auto max-w-6xl px-8 pb-16 pt-24">
+      <h2>Career</h2>
       <div id="timeline" class="mt-16">
         <ul>
           <li v-for="(item, index) in timelineItems" :key="index">
@@ -111,7 +109,18 @@
           </li>
         </ul>
       </div>
-    </div>
+    </section>
+    <section class="flex flex-col items-center gap-4 px-8 py-16 *:text-center">
+      <h2>Got an idea?</h2>
+      <p class="lg:text-xl">I got the code. Let's make it a real website!</p>
+      <StyledButton
+        primary
+        class="mt-4 text-base lg:px-5 lg:py-2.5 lg:text-xl"
+        @click="navigateTo('/contact')"
+      >
+        Contact me
+      </StyledButton>
+    </section>
   </div>
 </template>
 
@@ -173,6 +182,10 @@ function setUpTimeline() {
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  @apply font-title text-4xl font-semibold leading-tight tracking-tight lg:text-6xl;
+}
+
 #skills ul li {
   @apply flex flex-col items-center gap-4 text-xl;
 
