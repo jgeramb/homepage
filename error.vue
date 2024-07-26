@@ -30,19 +30,23 @@
         class="absolute flex h-full flex-col justify-center text-balance px-8 text-center max-md:max-w-sm"
         :class="{ invisible: is404 }"
       >
-        <h1 class="font-title text-3xl font-semibold leading-tight md:text-4xl">
+        <h1 class="font-title text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
           {{ is404 ? "Oh no, where did the page go?!" : "An unexpected error occurred" }}
         </h1>
-        <p class="mt-4 md:text-lg">
+        <p class="mt-4 md:text-xl">
           {{
             is404
               ? "I've looked everywhere, but couldn't find it &hellip;"
               : "Try again later or contact me if the error persists."
           }}
         </p>
-        <NuxtLink :to="useRequestHeader('Referrer') || '/'" class="mx-auto mt-8 text-primary-500 underline">
+        <StyledButton
+          secondary
+          class="mx-auto mt-8 !px-8 !text-base"
+          @click="navigateTo(useRequestHeader('Referrer') || '/')"
+        >
           Go back
-        </NuxtLink>
+        </StyledButton>
       </div>
     </div>
   </DefaultLayout>

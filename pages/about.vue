@@ -112,12 +112,8 @@
     </section>
     <section class="flex flex-col items-center gap-4 px-8 py-16 *:text-center">
       <h2>Got an idea?</h2>
-      <p class="lg:text-xl">I got the code. Let's make it a real website!</p>
-      <StyledButton
-        primary
-        class="mt-4 text-base lg:px-5 lg:py-2.5 lg:text-xl"
-        @click="navigateTo('/contact')"
-      >
+      <p class="lg:text-lg">I got the code. Let's make it a real website!</p>
+      <StyledButton primary class="mt-4 !px-8 lg:text-lg" @click="navigateTo('/contact')">
         Contact me
       </StyledButton>
     </section>
@@ -183,7 +179,7 @@ function setUpTimeline() {
 
 <style lang="scss" scoped>
 h2 {
-  @apply font-title text-4xl font-semibold leading-tight tracking-tight lg:text-6xl;
+  @apply font-title text-4xl font-semibold leading-tight tracking-tight lg:text-5xl;
 }
 
 #skills ul li {
