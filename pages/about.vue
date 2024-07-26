@@ -28,12 +28,15 @@
     </div>
     <div
       id="skills"
-      class="mx-auto flex flex-col items-center gap-24 bg-black pb-4 pt-24 text-primary-50 *:w-full *:max-w-6xl *:px-8"
+      class="mx-auto flex flex-col items-center bg-black pb-4 pt-24 text-primary-50 *:w-full *:max-w-6xl *:px-8"
     >
-      <h1 class="text-center font-title text-3xl font-semibold leading-none tracking-wide lg:text-6xl">
+      <h1 class="text-center font-title text-4xl font-semibold leading-none tracking-wide lg:text-6xl">
         Skills
       </h1>
-      <ul class="grid-cols-1 flex-wrap justify-between gap-16 max-lg:grid sm:grid-cols-2 lg:flex">
+      <p class="mt-4 text-center text-primary-400 max-lg:text-sm">
+        Things that I use to built first-class web apps.
+      </p>
+      <ul class="mt-24 grid-cols-1 flex-wrap justify-between gap-16 max-lg:grid sm:grid-cols-2 lg:flex">
         <li>
           <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
             <path
