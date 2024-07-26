@@ -96,37 +96,47 @@
     />
     <div class="mx-auto max-w-6xl px-8 pb-16 pt-24">
       <h2 class="font-title text-3xl font-semibold tracking-tight lg:text-6xl">Career</h2>
-      <div id="timeline" class="relative mt-16">
-        <ul class="relative flex flex-col pl-16">
+      <div id="timeline" class="mt-16">
+        <ul>
           <li>
             <div></div>
-            <span>2024 - now</span>
-            <h3>devite UG</h3>
-            <span>Co-Founder, Full-Stack Web-Developer</span>
+            <div>
+              <span>2024 - now</span>
+              <h3>devite UG</h3>
+              <span>Co-Founder, Full-Stack Web-Developer</span>
+            </div>
           </li>
           <li>
             <div></div>
-            <span>2023 - 2024</span>
-            <h3>bitbliss GbR</h3>
-            <span>Founder, Software engineer</span>
+            <div>
+              <span>2023 - 2024</span>
+              <h3>bitbliss GbR</h3>
+              <span>Founder, Software engineer</span>
+            </div>
           </li>
           <li>
             <div></div>
-            <span>2022 - now</span>
-            <h3>duschdichtungsprofile.de</h3>
-            <span>Software engineer</span>
+            <div>
+              <span>2022 - now</span>
+              <h3>duschdichtungsprofile.de</h3>
+              <span>Software engineer</span>
+            </div>
           </li>
           <li>
             <div></div>
-            <span>2022</span>
-            <h3>Digital Masters</h3>
-            <span>Internship</span>
+            <div>
+              <span>2022</span>
+              <h3>Digital Masters</h3>
+              <span>Internship</span>
+            </div>
           </li>
           <li>
             <div></div>
-            <span>2021</span>
-            <h3>CoreMedia</h3>
-            <span>Internship</span>
+            <div>
+              <span>2021</span>
+              <h3>CoreMedia</h3>
+              <span>Internship</span>
+            </div>
           </li>
         </ul>
       </div>
@@ -160,12 +170,13 @@ function setUpTimeline() {
             duration: 0.5,
             delay: 0.25,
             ease: "linear",
+            onStart: () => (item.firstElementChild.style.opacity = 1),
             onComplete() {
               if (queue.length > 0) queue.shift()();
               else isFadingIn = false;
             }
           });
-          gsap.to(item, {
+          gsap.to(item.lastElementChild, {
             opacity: 1,
             duration: 0.5,
             ease: "expo.in"
@@ -197,29 +208,33 @@ function setUpTimeline() {
 }
 
 #timeline li {
-  @apply relative flex flex-col pb-8 opacity-0 last:pb-0;
+  @apply relative flex gap-16 [&:last-child_>:first-child]:h-12;
 
-  &:first-child > div {
-    @apply mt-1.5 before:top-0;
-  }
+  &:first-child {
+    @apply [&_:last-child]:pt-0;
 
-  &:last-child > div {
-    @apply h-3.5;
-  }
-
-  > div {
-    @apply absolute -left-16 h-full max-h-0 w-px overflow-y-clip overflow-x-visible bg-primary-900;
-
-    &::before {
-      @apply absolute left-0 top-1.5 ml-px size-2 -translate-x-1/2 rounded-full bg-primary-800 content-[''];
+    > :first-child {
+      @apply mt-2 before:top-0;
     }
   }
 
-  > span:first-of-type {
+  > :first-child {
+    @apply relative max-h-0 w-0.5 shrink-0 overflow-y-clip overflow-x-visible bg-primary-900 opacity-0;
+
+    &::before {
+      @apply absolute left-1/2 top-[2.5rem] size-2 -translate-x-1/2 rounded-full bg-primary-800 opacity-[inherit] transition-opacity delay-[250ms] duration-500 content-[''];
+    }
+  }
+
+  > :last-child {
+    @apply pt-8 opacity-0;
+  }
+
+  span:first-of-type {
     @apply text-sm text-primary-500;
   }
 
-  > h3 {
+  h3 {
     @apply mt-2 font-title text-lg font-semibold leading-snug;
   }
 }
