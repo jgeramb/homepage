@@ -322,12 +322,13 @@ function renderArrow() {
     tipX = 0;
   }
 
-  const padding = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
+  const gapY = parseFloat(getComputedStyle(document.documentElement).fontSize) * 2;
   const gameContainer = document.getElementById("game-container");
+  const gameContainerBottom = gameContainer.getBoundingClientRect().bottom + window.scrollY + gapY;
 
-  if (tipY >= gameContainer.getBoundingClientRect().bottom + window.scrollY + padding) {
+  if (tipY >= gameContainerBottom) {
     collides = true;
-    tipY = gameContainer.getBoundingClientRect().bottom + window.scrollY + padding;
+    tipY = gameContainerBottom;
   }
 
   if (tipY <= 0) {
@@ -361,12 +362,12 @@ function renderArrow() {
     gsap.fromTo(
       dinosaur,
       {
-        top: padding,
+        top: gapY,
         opacity: 0
       },
       {
         duration: 1,
-        top: window.innerHeight - padding,
+        top: window.innerHeight - gapY,
         opacity: 1,
         ease: "expo.in",
         onComplete: () =>
