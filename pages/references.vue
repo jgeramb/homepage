@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-8 pt-8 *:px-8">
-    <Archery />
+    <ReferencesArchery />
   </div>
 </template>
 

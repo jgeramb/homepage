@@ -42,7 +42,7 @@
       v-if="!gameActive"
       class="flex select-none flex-col items-center justify-center gap-4 text-center"
     >
-      <h1 class="mb-4 font-title text-6xl uppercase leading-snug tracking-tight">Archery</h1>
+      <h1 class="mb-4">Archery</h1>
       <StyledButton @click="startGame" primary>Play now</StyledButton>
       <p class="text-sm text-primary-500">No download required</p>
     </HeroSection>
@@ -52,7 +52,7 @@
       class="flex w-full select-none flex-wrap items-center gap-x-24 gap-y-8 max-lg:flex-col lg:max-w-6xl"
     >
       <div class="w-full">
-        <h1 class="mb-4 font-title text-4xl uppercase leading-snug tracking-tight">Archery</h1>
+        <h1 class="mb-4">Archery</h1>
         <ul v-if="gameActive" class="font-title text-sm uppercase leading-relaxed tracking-tight">
           <li>
             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

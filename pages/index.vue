@@ -14,11 +14,11 @@
         class="h-[32rem] object-cover lg:hidden"
       />
       <div class="flex flex-col items-start gap-4 max-lg:px-8">
-        <h2 class="font-title text-3xl font-semibold !leading-snug tracking-tight md:text-6xl">
+        <h1 class="normal-case">
           Hi, my name is
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
           >.
-        </h2>
+        </h1>
         <p class="mt-2 text-sm !leading-relaxed lg:text-lg">
           I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
         </p>
