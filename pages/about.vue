@@ -18,7 +18,7 @@
     </HeroSection>
     <AboutSkillsSection class="-translate-y-px" />
     <AboutMottoSection />
-    <AboutCareerSection />Y
+    <AboutCareerSection />
     <AboutCallToActionSection />
   </div>
 </template>
