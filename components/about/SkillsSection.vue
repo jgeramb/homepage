@@ -57,15 +57,6 @@
       </li>
     </ul>
   </section>
-  <ImageAsset
-    src="bridge.jpeg"
-    alt="Bridge"
-    height="1280"
-    sizes="320px sm:640px md:768px lg:1024px xl:1280px 2xl:1536px"
-    fit="cover"
-    :modifiers="{ position: 'top' }"
-    class="-mt-2 h-[1280px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_80%,transparent)]"
-  />
 </template>
 
 <style lang="scss" scoped>
