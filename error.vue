@@ -30,7 +30,7 @@
         class="absolute flex h-full flex-col justify-center text-balance px-8 text-center max-md:max-w-sm"
         :class="{ invisible: is404 }"
       >
-        <h1>
+        <h1 class="normal-case">
           {{ is404 ? "Oh no, where did the page go?!" : "An unexpected error occurred" }}
         </h1>
         <p class="mt-4 md:text-xl">
