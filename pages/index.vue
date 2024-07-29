@@ -11,6 +11,7 @@
         fit="cover"
         :modifiers="{ position: 'top' }"
         loading="eager"
+        densities="x1 x2 x3"
         class="h-[32rem] object-cover lg:hidden"
       />
       <div class="flex flex-col items-start gap-4 max-lg:px-8">
