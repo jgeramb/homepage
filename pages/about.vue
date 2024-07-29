@@ -9,7 +9,7 @@
         fit="cover"
         :modifiers="{ position: 'right bottom' }"
         loading="eager"
-        class="h-[calc(var(--vh,1vh)*100-5rem)] w-full object-cover brightness-50 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] md:h-[calc(var(--vh,1vh)*100-6.3125rem)]"
+        class="h-[calc(var(--vh,1vh)*100-5rem)] w-full object-cover brightness-50 [mask-image:linear-gradient(to_bottom,black_75%,transparent)] md:h-[calc(var(--vh,1vh)*100-6.3125rem)]"
       />
       <div class="absolute px-8 text-center uppercase tracking-widest text-primary-50 *:drop-shadow-md">
         <h1>My journey</h1>

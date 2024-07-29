@@ -63,4 +63,3 @@ ul li {
   }
 }
 </style>
-<script setup lang="ts"></script>

@@ -40,7 +40,7 @@ useTransitionListener(() => {
   Array.from(items).forEach((item) =>
     ScrollTrigger.create({
       trigger: item,
-      start: "top 80%",
+      start: "top 90%",
       onEnter() {
         function animate() {
           gsap.to(item.firstElementChild, {
