@@ -60,7 +60,7 @@ useTransitionListener(() => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.from(wrapper.value.children, {
     opacity: 0,
-    yPercent: -25,
+    y: -10,
     duration: 0.5,
     ease: "power3.inOut",
     stagger: 0.1,
