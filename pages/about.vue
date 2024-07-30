@@ -18,8 +18,8 @@
     </HeroSection>
     <AboutSkillsSection class="-translate-y-px" />
     <AboutMottoSection />
-    <AboutCareerSection />
-    <AboutCallToActionSection />
+    <AboutCareerSection @animation-done="$refs['cta'].createScrollTrigger()" />
+    <AboutCallToActionSection ref="cta" />
   </div>
 </template>
 

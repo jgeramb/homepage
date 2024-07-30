@@ -28,6 +28,8 @@ const timelineItems = [
   { time: "2021", title: "CoreMedia", description: "Internship" }
 ];
 
+const emit = defineEmits(["animationDone"]);
+
 useTransitionListener(() => {
   const timeline = document.querySelector("#timeline");
   const items = timeline.lastElementChild.children;
@@ -37,7 +39,7 @@ useTransitionListener(() => {
   let isFadingIn = false;
   let queue = [];
 
-  Array.from(items).forEach((item) =>
+  Array.from(items).forEach((item, index) =>
     ScrollTrigger.create({
       trigger: item,
       start: "top 90%",
@@ -51,6 +53,8 @@ useTransitionListener(() => {
             onComplete() {
               if (queue.length > 0) queue.shift()();
               else isFadingIn = false;
+
+              if (index === items.length - 1) emit("animationDone");
             }
           });
           gsap.to(item.lastElementChild, {

@@ -3,10 +3,10 @@
     class="mx-auto flex flex-col items-center bg-black pb-4 pt-24 text-primary-50 *:w-full *:max-w-6xl *:px-8"
   >
     <h2 class="text-center">Skills</h2>
-    <p class="mt-4 text-center text-primary-400 max-lg:text-sm">
+    <p class="mb-24 mt-4 text-center text-primary-400 max-lg:text-sm">
       Things that I use to built first-class web apps.
     </p>
-    <ul class="mt-24 grid-cols-1 flex-wrap justify-between gap-16 max-lg:grid sm:grid-cols-2 lg:flex">
+    <ul ref="wrapper" class="grid-cols-1 flex-wrap justify-between gap-16 max-lg:grid sm:grid-cols-2 lg:flex">
       <li>
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -49,6 +49,28 @@
     </ul>
   </section>
 </template>
+
+<script setup>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const wrapper = ref();
+
+useTransitionListener(() => {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from(wrapper.value.children, {
+    opacity: 0,
+    yPercent: -25,
+    duration: 0.5,
+    ease: "power3.inOut",
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: wrapper.value,
+      start: "top 90%"
+    }
+  });
+});
+</script>
 
 <style lang="scss" scoped>
 ul li {
