@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   css: ["assets/scss/master.scss"],
 
   // modules
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/content"],
 
   tailwindcss: {
     cssPath: "assets/scss/tailwind.scss",
@@ -61,7 +61,7 @@ export default defineNuxtConfig({
         },
         {
           name: "og:image",
-          content: "/images/banner.png"
+          content: "/seo/banner.png"
         },
         {
           property: "twitter:card",
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
         },
         {
           name: "twitter:image",
-          content: "/images/banner.png"
+          content: "/seo/banner.png"
         },
         // Windows
         {
@@ -91,7 +91,7 @@ export default defineNuxtConfig({
         }
       ],
       link: [
-        // icons
+        // seo
         {
           rel: "shortcut icon",
           sizes: "48x48",
@@ -101,13 +101,13 @@ export default defineNuxtConfig({
           rel: "icon",
           type: "image/png",
           sizes: "32x32",
-          href: "/icons/favicon-32x32.png"
+          href: "/seo/favicon-32x32.png"
         },
         {
           rel: "icon",
           type: "image/png",
           sizes: "16x16",
-          href: "/icons/favicon-16x16.png"
+          href: "/seo/favicon-16x16.png"
         },
         // Safari
         {
@@ -122,7 +122,7 @@ export default defineNuxtConfig({
         },
         {
           rel: "mask-icon",
-          href: "/icons/safari-pinned-tab.svg",
+          href: "/seo/safari-pinned-tab.svg",
           color: "#09090b"
         }
       ],
@@ -133,7 +133,7 @@ export default defineNuxtConfig({
             "@context": "https://schema.org",
             "@type": "Person",
             "url": "${process.env.NUXT_PUBLIC_BASE_URL}",
-            "image": "${process.env.NUXT_PUBLIC_BASE_URL}/images/logo.png",
+            "image": "${process.env.NUXT_PUBLIC_BASE_URL}/seo/logo.png",
             "name": "Justus Geramb",
             "jobTitle": "Web Developer",
             "email": "admin@justus.dev",

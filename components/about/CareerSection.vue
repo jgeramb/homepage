@@ -6,7 +6,9 @@
         <li v-for="(item, index) in timelineItems" :key="index">
           <div></div>
           <div>
-            <span>{{ item.time }}</span>
+            <span>{{
+              item.start_year + ((item.start_year !== item.end_year && ` - ${item.end_year || "now"}`) || "")
+            }}</span>
             <h3>{{ item.title }}</h3>
             <span>{{ item.description }}</span>
           </div>
@@ -20,13 +22,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const timelineItems = [
-  { time: "2024 - now", title: "devite UG", description: "Co-Founder, Full-Stack Web-Developer" },
-  { time: "2023 - 2024", title: "bitbliss GbR", description: "Co-Founder, Software engineer" },
-  { time: "2022 - now", title: "duschdichtungsprofile.de", description: "Software engineer" },
-  { time: "2022", title: "devite UG", description: "Internship" },
-  { time: "2021", title: "CoreMedia", description: "Internship" }
-];
+const timelineItems = await queryContent("career").sort({ start_year: -1 }).find();
 
 const emit = defineEmits(["animationDone"]);
 
