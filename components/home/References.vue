@@ -2,7 +2,7 @@
   <div class="w-full pt-8">
     <h2 class="w-full px-8">References</h2>
     <div ref="scrollContainer" class="no-scrollbar w-full overflow-x-auto py-8">
-      <ul class="flex w-fit gap-8 px-8">
+      <ul ref="wrapper" class="flex w-fit gap-8 px-8">
         <li v-for="item in referenceItems" :key="item.title">
           <ReferenceCard :data="item" />
         </li>
@@ -26,6 +26,26 @@ const { data: referenceItems } = await useAsyncData("references_items", () =>
     .limit(3)
     .find()
 );
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const wrapper = ref();
+
+useTransitionListener(() => {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from(wrapper.value.children, {
+    opacity: 0,
+    xPercent: 10,
+    duration: 0.5,
+    ease: "power3.inOut",
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: wrapper.value,
+      start: "top 90%"
+    }
+  });
+});
 
 const scrollContainer = ref();
 let scrollX = 0;
