@@ -3,7 +3,7 @@
     <span class="text-sm text-primary-500">{{ data.year }}</span>
     <h2 class="mt-2">{{ data.title }}</h2>
     <p class="mt-4 max-w-4xl !leading-relaxed lg:text-lg">{{ data.description }}</p>
-    <ul class="mt-8 flex flex-wrap gap-4">
+    <ul class="mt-8 flex flex-wrap gap-x-4 gap-y-2">
       <li v-for="link in data.links">
         <a class="link" :href="link.url" target="_blank">
           {{ link.title }}

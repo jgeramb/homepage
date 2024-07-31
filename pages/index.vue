@@ -20,14 +20,14 @@
           <span class="bg-gradient-to-br from-accent/75 to-accent bg-clip-text text-transparent">Justus</span
           >.
         </h1>
-        <p class="mt-2 text-sm !leading-relaxed lg:text-lg">
+        <p class="mt-2 !leading-relaxed lg:text-lg">
           I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
         </p>
-        <p class="text-sm !leading-relaxed lg:text-lg">
+        <p class="!leading-relaxed lg:text-lg">
           I build blazingly fast web applications with a focus on search engine optimization and user
           experience.
         </p>
-        <StyledButton primary class="mt-8 text-sm !leading-snug lg:text-lg" @click="navigateTo('/about')">
+        <StyledButton primary class="mt-8 lg:text-lg" @click="navigateTo('/about')">
           Learn more about me
         </StyledButton>
       </div>

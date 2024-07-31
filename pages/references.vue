@@ -16,9 +16,7 @@
       />
       <div class="flex flex-col items-start gap-4 max-lg:px-8">
         <h1 class="normal-case">References</h1>
-        <p class="mt-2 text-sm !leading-relaxed lg:text-lg">
-          Below are some projects that I have been working on:
-        </p>
+        <p class="!leading-relaxed lg:text-lg">Below are some projects that I have been working on.</p>
       </div>
       <ImageAsset
         src="work-laptop.jpeg"
@@ -32,7 +30,7 @@
       />
     </HeroSection>
     <div
-      class="mx-auto flex w-full max-w-6xl flex-col gap-16 divide-y divide-primary-200 px-8 pb-24 pt-16 [&_>:not(:first-child)]:pt-16"
+      class="mx-auto flex w-full max-w-6xl flex-col gap-16 divide-y divide-primary-200 border-t border-primary-200 px-8 pb-16 pt-24 [&_>:not(:first-child)]:pt-16"
     >
       <ReferencesItem v-for="item in items" :data="item" />
     </div>
