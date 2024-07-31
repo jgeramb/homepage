@@ -26,13 +26,13 @@
         sizes="426px"
         loading="eager"
         preload
-        class="rounded-xl shadow-md shadow-primary-950/25 max-lg:hidden"
+        class="rounded-xl shadow-lg shadow-primary-950/25 max-lg:hidden"
       />
     </HeroSection>
     <div
       class="mx-auto flex w-full max-w-6xl flex-col gap-16 divide-y divide-primary-200 border-t border-primary-200 px-8 pb-16 pt-24 [&_>:not(:first-child)]:pt-16"
     >
-      <ReferencesItem v-for="item in items" :data="item" />
+      <ReferencesItem v-for="item in items" :key="item.title" :data="item" />
     </div>
     <ReferencesArchery />
   </div>

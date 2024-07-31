@@ -9,3 +9,7 @@ h1 {
 h2 {
   @apply text-3xl lg:text-5xl !leading-tight;
 }
+
+h3 {
+  @apply text-xl lg:text-2xl !leading-tight;
+}

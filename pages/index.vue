@@ -39,7 +39,7 @@
         sizes="426px"
         loading="eager"
         preload
-        class="rounded-xl shadow-md shadow-primary-950/25 max-lg:hidden"
+        class="rounded-xl shadow-lg shadow-primary-950/25 max-lg:hidden"
       />
     </HeroSection>
     <div class="border-y border-primary-200 p-8">
@@ -47,6 +47,7 @@
         Dreamer<span class="text-accent">Entrepreneur</span>Developer
       </FullWidthTitle>
     </div>
+    <HomeReferences />
   </div>
 </template>
 
