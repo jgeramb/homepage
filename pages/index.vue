@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-8">
     <HeroSection
-      class="grid gap-x-24 gap-y-8 *:w-full lg:max-w-6xl lg:grid-cols-[4fr_3fr] lg:items-center lg:px-8 lg:pt-8"
+      class="grid w-full gap-x-24 gap-y-8 *:w-full lg:max-w-6xl lg:grid-cols-[4fr_3fr] lg:items-center lg:px-8 lg:pt-8"
     >
       <ImageAsset
         src="portrait-mobile.jpeg"
