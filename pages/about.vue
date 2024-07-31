@@ -25,8 +25,4 @@
 
 <script setup>
 useHeadSEO(true, "About • Justus Geramb", "About", "My career as a software developer.", "/about");
-
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-onMounted(ScrollTrigger.refresh);
 </script>
