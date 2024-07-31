@@ -20,7 +20,9 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const skills = await queryContent("skills").sort({ rating: -1 }).find();
+const { data: skills } = await useAsyncData("skills", () =>
+  queryContent("skills").sort({ rating: -1 }).find()
+);
 
 const wrapper = ref();
 

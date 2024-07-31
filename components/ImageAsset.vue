@@ -1,5 +1,5 @@
 <template>
-  <NuxtImg densities="x1" format="webp" :loading="loading" />
+  <NuxtImg densities="x1 x2" format="webp" :loading="loading" />
 </template>
 
 <script setup>

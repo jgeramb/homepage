@@ -36,7 +36,7 @@
         alt="Justus Geramb"
         width="4125"
         height="6188"
-        sizes="432px"
+        sizes="426px"
         loading="eager"
         preload
         class="rounded-xl shadow-md shadow-primary-950/25 max-lg:hidden"

@@ -22,7 +22,9 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const timelineItems = await queryContent("career").sort({ start_year: -1 }).find();
+const { data: timelineItems } = await useAsyncData("career_items", () =>
+  queryContent("career").sort({ start_year: -1 }).find()
+);
 
 const emit = defineEmits(["animationDone"]);
 

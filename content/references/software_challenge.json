@@ -1,0 +1,15 @@
+{
+  "title": "Software Challenge Germany",
+  "year": 2024,
+  "description": "The Software Challenge is a programming competition for students in Germany. I participated in the 2024 edition \"Mississippi Queen\" and won the first prize.",
+  "links": [
+    {
+      "title": "Software Challenge",
+      "url": "https://www.software-challenge.de/"
+    },
+    {
+      "title": "GitHub Repository",
+      "url": "https://www.github.com/jgeramb/sc-client-2024"
+    }
+  ]
+}

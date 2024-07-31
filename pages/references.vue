@@ -1,9 +1,49 @@
 <template>
-  <div class="flex flex-col gap-8 pt-8 *:px-8">
+  <div class="-mb-8 flex flex-col gap-8">
+    <HeroSection
+      class="grid gap-x-24 gap-y-8 *:w-full lg:max-w-6xl lg:grid-cols-[4fr_3fr] lg:items-center lg:px-8 lg:pt-8"
+    >
+      <ImageAsset
+        src="work-laptop.jpeg"
+        alt="Justus Geramb"
+        height="512"
+        sizes="271px xs:583px sm:719px md:975px"
+        fit="cover"
+        :modifiers="{ position: 'bottom' }"
+        loading="eager"
+        densities="x1 x2 x3"
+        class="h-[32rem] object-cover lg:hidden"
+      />
+      <div class="flex flex-col items-start gap-4 max-lg:px-8">
+        <h1 class="normal-case">References</h1>
+        <p class="mt-2 text-sm !leading-relaxed lg:text-lg">
+          Below are some projects that I have been working on:
+        </p>
+      </div>
+      <ImageAsset
+        src="work-laptop.jpeg"
+        alt="Justus Geramb"
+        width="3475"
+        height="4252"
+        sizes="426px"
+        loading="eager"
+        preload
+        class="rounded-xl shadow-md shadow-primary-950/25 max-lg:hidden"
+      />
+    </HeroSection>
+    <div
+      class="mx-auto flex w-full max-w-6xl flex-col gap-16 divide-y divide-primary-200 px-8 pb-24 pt-16 [&_>:not(:first-child)]:pt-16"
+    >
+      <ReferencesItem v-for="item in items" :data="item" />
+    </div>
     <ReferencesArchery />
   </div>
 </template>
 
 <script setup>
 useHeadSEO(true, "References • Justus Geramb", "References", "Some examples of my work.", "/references");
+
+const { data: items } = await useAsyncData("references_items", () =>
+  queryContent("references").only(["title", "year", "description", "links"]).sort({ year: -1 }).find()
+);
 </script>
