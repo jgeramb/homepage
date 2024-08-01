@@ -21,7 +21,7 @@
           >.
         </h1>
         <p class="mt-2 !leading-relaxed lg:text-lg">
-          I'm a full stack software developer from <span class="opacity-50">Hamburg, Germany</span>.
+          I'm a full stack software developer from <span class="text-primary-500">Hamburg, Germany</span>.
         </p>
         <p class="!leading-relaxed lg:text-lg">
           I build blazingly fast web applications with a focus on search engine optimization and user

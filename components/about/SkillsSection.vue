@@ -12,7 +12,7 @@
           :src="`/images/skills/${skill.icon.name}.svg`"
           :width="skill.icon.width"
           :height="skill.icon.height"
-          :alt="skill.title"
+          alt="Skill Icon"
         />
         <span>{{ skill.title }}</span>
         <AboutRating :rating="skill.rating" />
