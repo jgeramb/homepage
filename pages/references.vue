@@ -40,6 +40,25 @@
 
 <script setup>
 useHeadSEO(true, "References • Justus Geramb", "References", "Some examples of my work.", "/references");
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: `{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "References",
+              "item": "${useRuntimeConfig().public.baseURL}/references"
+            }
+          ]
+        }`
+    }
+  ]
+});
 
 const { data: items } = await useAsyncData("references_items", () =>
   queryContent("references").only(["title", "year", "description", "links"]).sort({ year: -1 }).find()

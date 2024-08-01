@@ -25,4 +25,23 @@
 
 <script setup>
 useHeadSEO(true, "About • Justus Geramb", "About", "My career as a software developer.", "/about");
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: `{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "About",
+              "item": "${useRuntimeConfig().public.baseURL}/about"
+            }
+          ]
+        }`
+    }
+  ]
+});
 </script>

@@ -77,6 +77,25 @@
 
 <script setup>
 useHeadSEO(true, "Contact • Justus Geramb", "Contact", "Get in touch with me.", "/contact");
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: `{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Contact",
+              "item": "${useRuntimeConfig().public.baseURL}/contact"
+            }
+          ]
+        }`
+    }
+  ]
+});
 
 const pending = ref(false);
 const success = ref(false);

@@ -59,6 +59,25 @@
 
 <script setup>
 useHeadSEO(false, "Imprint • Justus Geramb", "Imprint", "Legal information about my homepage.", "/imprint");
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: `{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Imprint",
+              "item": "${useRuntimeConfig().public.baseURL}/imprint"
+            }
+          ]
+        }`
+    }
+  ]
+});
 </script>
 
 <style lang="scss" scoped>

@@ -153,33 +153,6 @@ export default defineNuxtConfig({
               "addressRegion": "Schleswig-Holstein"
             }
           }`
-        },
-        {
-          type: "application/ld+json",
-          innerHTML: `{
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "About",
-                "item": "${process.env.NUXT_PUBLIC_BASE_URL}/about"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "References",
-                "item": "${process.env.NUXT_PUBLIC_BASE_URL}/references"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Contact",
-                "item": "${process.env.NUXT_PUBLIC_BASE_URL}/contact"
-              }
-            ]
-          }`
         }
       ]
     },
