@@ -31,13 +31,14 @@
         <li><NuxtLink to="/references">References</NuxtLink></li>
       </ul>
     </nav>
-    <a
-      ref="contactButton"
-      href="https://wa.me/+491758842377"
-      class="max-md:col-span-full md:justify-self-end"
+    <StyledButton
+      id="contact-button"
+      secondary
+      class="max-md:col-span-full max-md:w-full md:justify-self-end"
+      @click="navigateTo('/contact')"
     >
-      <StyledButton secondary class="max-md:w-full">Get in touch</StyledButton>
-    </a>
+      Get in touch
+    </StyledButton>
   </header>
 </template>
 
@@ -95,7 +96,6 @@ useTransitionListener(() => {
 });
 
 const menuOpen = ref(false);
-const contactButton = ref();
 const ITEM_FROM = { opacity: 0, y: -12 };
 const ITEM_TO = { opacity: 1, y: 0 };
 let menuTween, scrollY;
@@ -110,7 +110,10 @@ function closeMenu(resetScroll = false) {
 
 function toggleMenu(resetScroll = false) {
   const shouldExpand = !menuOpen.value;
-  const items = [...gsap.utils.toArray(navigation.value.getElementsByTagName("li")), contactButton.value];
+  const contactButton = document.getElementById("contact-button");
+  const items = [...gsap.utils.toArray(navigation.value.getElementsByTagName("li")), contactButton];
+
+  contactButton.style.transitionProperty = "none";
 
   menuTween?.kill();
   menuTween = gsap.fromTo(shouldExpand ? items : items.reverse(), shouldExpand ? ITEM_FROM : ITEM_TO, {
@@ -121,6 +124,9 @@ function toggleMenu(resetScroll = false) {
     ease: shouldExpand ? "power3.out" : "power3.in",
     onComplete: () => {
       if (!shouldExpand) closeMenu(resetScroll);
+
+      contactButton.style.removeProperty("transition-property");
+      contactButton.style.removeProperty("transform");
     }
   });
 
