@@ -7,8 +7,13 @@
       Things that I use to built first-class web apps.
     </p>
     <ul ref="wrapper" class="grid-cols-1 flex-wrap justify-between gap-16 max-lg:grid sm:grid-cols-2 lg:flex">
-      <li v-for="skill in skills" :key="skill.title">
-        <img :src="`/images/skills/${skill.icon_name}.svg`" :alt="skill.title" />
+      <li v-for="skill in skills" :key="skill.title" class="opacity-0">
+        <img
+          :src="`/images/skills/${skill.icon.name}.svg`"
+          :width="skill.icon.width"
+          :height="skill.icon.height"
+          :alt="skill.title"
+        />
         <span>{{ skill.title }}</span>
         <AboutRating :rating="skill.rating" />
       </li>
@@ -28,17 +33,24 @@ const wrapper = ref();
 
 useTransitionListener(() => {
   gsap.registerPlugin(ScrollTrigger);
-  gsap.from(wrapper.value.children, {
-    opacity: 0,
-    y: -10,
-    duration: 0.5,
-    ease: "power3.inOut",
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: wrapper.value,
-      start: "top 90%"
+  gsap.fromTo(
+    wrapper.value.children,
+    {
+      opacity: 0,
+      y: -10
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power3.inOut",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: wrapper.value,
+        start: "top 90%"
+      }
     }
-  });
+  );
 });
 </script>
 

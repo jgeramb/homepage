@@ -1,5 +1,9 @@
 {
   "title": "Docker",
-  "icon_name": "docker",
+  "icon": {
+    "name": "docker",
+    "width": 756,
+    "height": 596
+  },
   "rating": 3.5
 }

@@ -1,5 +1,9 @@
 {
   "title": "Hono.js",
-  "icon_name": "hono",
+  "icon": {
+    "name": "hono",
+    "width": 500,
+    "height": 500
+  },
   "rating": 4.5
 }

@@ -1,5 +1,9 @@
 {
   "title": "Nuxt.js / Vue.js",
-  "icon_name": "nuxt",
+  "icon": {
+    "name": "nuxt",
+    "width": 300,
+    "height": 200
+  },
   "rating": 5.0
 }

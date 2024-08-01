@@ -1,5 +1,9 @@
 {
   "title": "MariaDB / MySQL",
-  "icon_name": "mariadb",
+  "icon": {
+    "name": "mariadb",
+    "width": 128,
+    "height": 128
+  },
   "rating": 4.0
 }
