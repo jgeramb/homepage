@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-import StyledButton from "~/components/StyledButton.vue";
+useHeadSEO(true, "Contact • Justus Geramb", "Contact", "Get in touch with me.", "/contact");
 
 const pending = ref(false);
 const success = ref(false);

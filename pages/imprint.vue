@@ -57,6 +57,10 @@
   </div>
 </template>
 
+<script setup>
+useHeadSEO(false, "Imprint • Justus Geramb", "Imprint", "Legal information about my homepage.", "/imprint");
+</script>
+
 <style lang="scss" scoped>
 section {
   @apply flex flex-col gap-4;
