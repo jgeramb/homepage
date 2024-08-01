@@ -31,6 +31,12 @@ export default defineNuxtConfig({
 
   // environment
   runtimeConfig: {
+    mailHost: "",
+    mailPort: "",
+    mailSecure: "",
+    mailUser: "",
+    mailPassword: "",
+    mailRecipient: "",
     public: {
       baseURL: ""
     }
