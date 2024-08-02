@@ -151,7 +151,7 @@ async function sendMessage() {
   @apply relative;
 
   > label {
-    @apply pointer-events-none absolute left-3 top-[0.8125rem] bg-primary-100 px-1 text-sm leading-none text-primary-500 transition-[top,transform] duration-300 ease-out;
+    @apply pointer-events-none absolute left-3 top-3.5 bg-primary-100 px-1 text-sm leading-none text-primary-500 transition-[top,transform] duration-300 ease-out;
 
     &:has(+ input:focus),
     &:has(+ textarea:focus),
