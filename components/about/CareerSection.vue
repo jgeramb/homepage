@@ -19,16 +19,10 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["animationDone"]);
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-let animated = false;
-
-function createScrollTrigger() {
-  if (animated) return;
-
+useTransitionListener(() => {
   const timeline = document.querySelector("#timeline");
   const items = timeline.lastElementChild.children;
 
@@ -37,7 +31,7 @@ function createScrollTrigger() {
   let isFadingIn = false;
   let queue = [];
 
-  Array.from(items).forEach((item, index) =>
+  Array.from(items).forEach((item) =>
     ScrollTrigger.create({
       trigger: item,
       start: "top 90%",
@@ -51,8 +45,6 @@ function createScrollTrigger() {
             onComplete() {
               if (queue.length > 0) queue.shift()();
               else isFadingIn = false;
-
-              if (index === items.length - 1) emit("animationDone");
             }
           });
           gsap.to(item.lastElementChild, {
@@ -67,13 +59,10 @@ function createScrollTrigger() {
 
           isFadingIn = true;
         } else queue.push(animate);
-      },
-      onComplete: () => (animated = true)
+      }
     })
   );
-}
-
-defineExpose({ createScrollTrigger });
+});
 
 const { data: timelineItems } = await useAsyncData("career_items", () =>
   queryContent("career").sort({ start_year: -1 }).find()

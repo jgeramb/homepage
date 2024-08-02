@@ -16,11 +16,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const wrapper = ref();
-let animated = false;
 
-function createScrollTrigger() {
-  if (animated) return;
-
+useTransitionListener(() => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.fromTo(
     wrapper.value.children,
@@ -34,11 +31,8 @@ function createScrollTrigger() {
       scrollTrigger: {
         trigger: wrapper.value,
         start: "top 90%"
-      },
-      onComplete: () => (animated = true)
+      }
     }
   );
-}
-
-defineExpose({ createScrollTrigger });
+});
 </script>

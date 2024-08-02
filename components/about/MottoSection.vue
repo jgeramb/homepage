@@ -26,8 +26,6 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["animationDone"]);
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -47,8 +45,7 @@ useTransitionListener(async () => {
     scrollTrigger: {
       trigger: container.value,
       start: "center 80%"
-    },
-    onComplete: () => emit("animationDone")
+    }
   });
   timeline.from(quote.value.getElementsByTagName("span"), { stagger: 0.01 });
   timeline.from(subtitle.value, {});
