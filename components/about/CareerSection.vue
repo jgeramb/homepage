@@ -19,16 +19,16 @@
 </template>
 
 <script setup>
+const emit = defineEmits(["animationDone"]);
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const { data: timelineItems } = await useAsyncData("career_items", () =>
-  queryContent("career").sort({ start_year: -1 }).find()
-);
+let animated = false;
 
-const emit = defineEmits(["animationDone"]);
+function createScrollTrigger() {
+  if (animated) return;
 
-useTransitionListener(() => {
   const timeline = document.querySelector("#timeline");
   const items = timeline.lastElementChild.children;
 
@@ -67,10 +67,17 @@ useTransitionListener(() => {
 
           isFadingIn = true;
         } else queue.push(animate);
-      }
+      },
+      onComplete: () => (animated = true)
     })
   );
-});
+}
+
+defineExpose({ createScrollTrigger });
+
+const { data: timelineItems } = await useAsyncData("career_items", () =>
+  queryContent("career").sort({ start_year: -1 }).find()
+);
 </script>
 
 <style lang="scss" scoped>

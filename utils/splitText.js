@@ -26,8 +26,10 @@ export default function splitText(textElement) {
     }
 
     const span = document.createElement("span");
-    span.style.display = "inline-block";
     span.innerText = char;
+    span.style.display = "inline-block";
+
+    if (char === " ") span.style.whiteSpace = "pre";
 
     if (currentParent) currentParent.appendChild(span);
     else textElements.push(span);
