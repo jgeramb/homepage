@@ -68,6 +68,19 @@
 
 <script setup>
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+useTransitionListener(() => {
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from("#game-container", {
+    yPercent: 25,
+    opacity: 0,
+    scrollTrigger: {
+      trigger: "#game-container",
+      start: "top 90%"
+    }
+  });
+});
 
 const BOW_WIDTH = 4,
   BOW_ANGLE = Math.PI / 3,

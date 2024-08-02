@@ -30,6 +30,7 @@
       />
     </HeroSection>
     <div
+      ref="itemsWrapper"
       class="mx-auto flex w-full max-w-6xl flex-col gap-16 divide-y divide-primary-200 border-t border-primary-200 px-8 pb-16 pt-24 [&_>:not(:first-child)]:pt-16"
     >
       <ReferencesItem v-for="item in items" :key="item.title" :data="item" />
@@ -63,4 +64,25 @@ useHead({
 const { data: items } = await useAsyncData("references_items", () =>
   queryContent("references").only(["title", "year", "description", "links"]).sort({ year: -1 }).find()
 );
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const itemsWrapper = ref();
+
+useTransitionListener(() => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  Array.from(itemsWrapper.value.children).forEach((item) => {
+    gsap.from(item, {
+      yPercent: 25,
+      opacity: 0,
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: item,
+        start: "top 90%"
+      }
+    });
+  });
+});
 </script>

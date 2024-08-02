@@ -31,7 +31,11 @@
           looking for new opportunities to collaborate with others. Feel free to reach out to me using the
           form below or by using one of the buttons in the footer.
         </p>
-        <form @submit.prevent="sendMessage" class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]">
+        <form
+          ref="form"
+          @submit.prevent="sendMessage"
+          class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-[1fr_2fr]"
+        >
           <div class="flex flex-col gap-8">
             <div class="input-container">
               <label>Name</label>
@@ -130,6 +134,33 @@ async function sendMessage() {
 
   pending.value = false;
 }
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const form = ref();
+
+useTransitionListener(() => {
+  const submitButton = form.value.querySelector('button[type="submit"]');
+  submitButton.style.transitionProperty = "none";
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from([...form.value.getElementsByClassName("input-container"), submitButton], {
+    y: 10,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.25,
+    ease: "power3.inOut",
+    scrollTrigger: {
+      trigger: form.value,
+      start: "top 90%"
+    },
+    onComplete() {
+      submitButton.style.removeProperty("transition-property");
+      submitButton.style.removeProperty("transform");
+    }
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -163,7 +194,7 @@ async function sendMessage() {
 
   > input,
   > textarea {
-    @apply w-full rounded-md border border-primary-200 bg-transparent px-4 py-2 text-base focus:outline-1 focus:outline-accent;
+    @apply w-full rounded-md border border-primary-300 bg-transparent px-4 py-2 text-base focus:outline-1 focus:outline-accent;
   }
 }
 </style>
