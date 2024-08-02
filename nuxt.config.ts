@@ -137,20 +137,19 @@ export default defineNuxtConfig({
           type: "application/ld+json",
           innerHTML: `{
             "@context": "https://schema.org",
-            "@type": "Person",
-            "url": "${process.env.NUXT_PUBLIC_BASE_URL}",
-            "image": "${process.env.NUXT_PUBLIC_BASE_URL}/seo/logo.png",
-            "name": "Justus Geramb",
-            "jobTitle": "Web Developer",
-            "email": "admin@justus.dev",
-            "telephone": "+49-175-884-2377",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Winzeldorfer Straße 48c",
-              "postalCode": "25474",
-              "addressLocality": "Bönningstedt",
-              "addressCountry": "DE",
-              "addressRegion": "Schleswig-Holstein"
+            "@type": "ProfilePage",
+            "dateCreated": "2024-08-01T00:00:00Z",
+            "dateModified": "2024-08-02T00:00:00Z",
+            "mainEntity": {
+              "@type": "Person",
+              "url": "${process.env.NUXT_PUBLIC_BASE_URL}",
+              "image": "${process.env.NUXT_PUBLIC_BASE_URL}/images/portrait.jpeg",
+              "name": "Justus Geramb",
+              "alternateName": "JustixDev",
+              "jobTitle": "Web Developer",
+              "description": "Web Developer",
+              "email": "admin@justix.dev",
+              "telephone": "+491758842377"
             }
           }`
         }
