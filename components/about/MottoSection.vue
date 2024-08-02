@@ -8,6 +8,7 @@
       fit="cover"
       :modifiers="{ position: 'top' }"
       class="-mt-2 h-[1280px] w-full object-cover [mask-image:linear-gradient(to_bottom,black_85%,transparent)]"
+      @load="() => ScrollTrigger.refresh()"
     />
     <div
       class="absolute inset-x-0 top-[max(42.5vw,38rem)] z-10 mx-auto max-w-6xl px-8 font-title tracking-tight text-primary-50"
