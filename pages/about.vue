@@ -30,17 +30,17 @@ useHead({
     {
       type: "application/ld+json",
       innerHTML: `{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "About",
-              "item": "${useRuntimeConfig().public.baseURL}/about"
-            }
-          ]
-        }`
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "About",
+            "item": "${useRuntimeConfig().public.baseURL}/about"
+          }
+        ]
+      }`
     }
   ]
 });

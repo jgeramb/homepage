@@ -82,17 +82,17 @@ useHead({
     {
       type: "application/ld+json",
       innerHTML: `{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Contact",
-              "item": "${useRuntimeConfig().public.baseURL}/contact"
-            }
-          ]
-        }`
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Contact",
+            "item": "${useRuntimeConfig().public.baseURL}/contact"
+          }
+        ]
+      }`
     }
   ]
 });
