@@ -149,7 +149,13 @@ export default defineNuxtConfig({
               "jobTitle": "Web Developer",
               "description": "Web Developer",
               "email": "admin@justix.dev",
-              "telephone": "+491758842377"
+              "telephone": "+491758842377",
+              "sameAs": [
+                "https://www.linkedin.com/in/justus-geramb-8a329b267",
+                "https://www.instagram.com/justixdev",
+                "https://www.youtube.com/@justixdev",
+                "https://x.com/JustixDeveloper"
+              ]
             }
           }`
         }
