@@ -59,7 +59,11 @@
         </div>
         <canvas ref="bowCanvas" width="354" height="354" class="touch-none max-lg:mx-auto max-lg:size-64" />
         <div ref="target" class="relative max-lg:mt-auto lg:ml-auto">
-          <div class="size-24 rounded-full border-4 border-primary-50/25"></div>
+          <div
+            class="flex size-24 items-center justify-center rounded-full border-4 border-primary-950 invert"
+          >
+            <img src="assets/icons/cross.svg" alt="Cross" class="size-6" />
+          </div>
         </div>
       </div>
     </Transition>
