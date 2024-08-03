@@ -44,6 +44,7 @@
 
 <script setup>
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const cursor = ref();
 let cursorTween;
@@ -106,6 +107,7 @@ function closeMenu(resetScroll = false) {
   document.documentElement.style.removeProperty("overflow");
 
   if (!resetScroll) window.scrollTo({ top: scrollY, behavior: "smooth" });
+  else setTimeout(() => ScrollTrigger.refresh(), 500);
 }
 
 function toggleMenu(resetScroll = false) {
