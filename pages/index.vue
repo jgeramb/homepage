@@ -13,6 +13,7 @@
         loading="eager"
         densities="x1 x2 x3"
         class="h-[32rem] object-cover lg:hidden"
+        @load="() => ScrollTrigger.refresh()"
       />
       <div class="flex flex-col items-start gap-4 max-lg:px-8">
         <h1 class="normal-case">
@@ -40,6 +41,7 @@
         loading="eager"
         preload
         class="rounded-xl shadow-lg shadow-primary-950/25 max-lg:hidden"
+        @load="() => ScrollTrigger.refresh()"
       />
     </HeroSection>
     <div class="border-y border-primary-200 p-8">
@@ -53,4 +55,6 @@
 
 <script setup>
 useHeadSEO(true, "Justus Geramb", "Justus Geramb", "Dreamer. Entrepreneur. Developer.", "/");
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 </script>

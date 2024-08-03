@@ -1,5 +1,5 @@
 <template>
-  <section ref="container" class="relative">
+  <section class="relative">
     <ImageAsset
       src="bridge.jpeg"
       alt="Bridge"
@@ -11,6 +11,7 @@
       @load="() => ScrollTrigger.refresh()"
     />
     <div
+      ref="container"
       class="absolute inset-x-0 top-[max(42.5vw,38rem)] z-10 mx-auto max-w-6xl px-8 font-title tracking-tight text-primary-50"
     >
       <blockquote>
@@ -44,7 +45,7 @@ useTransitionListener(async () => {
     defaults: { opacity: 0, yPercent: 25, duration: 0.5, ease: "power3.inOut" },
     scrollTrigger: {
       trigger: container.value,
-      start: "center 80%"
+      start: "top 90%"
     }
   });
   timeline.from(quote.value.getElementsByTagName("span"), { stagger: 0.01 });
