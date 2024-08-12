@@ -1,5 +1,5 @@
 export default function splitText(textElement) {
-  const html = textElement.innerHTML.trim();
+  const html = textElement.innerHTML.replaceAll(/<!--[\[\]]-->/g, "").trim();
   const textElements = [];
   let currentParent = null;
   let childIndex = 0;
