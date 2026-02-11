@@ -58,7 +58,6 @@
   }
 
   /* scrollbars */
-
   ::-webkit-scrollbar {
     @apply size-2;
   }

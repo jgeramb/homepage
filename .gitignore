@@ -22,6 +22,7 @@ logs
 !.env.example
 env.sh*
 !env.sh.example
+
 # Test coverage
 coverage/
 

@@ -1,11 +1,11 @@
 # homepage
 
-This is my homepage, the latest production build is available [here](https://www.justix.dev/).
+This is my homepage, the latest production build is available [here](https://www.justix.dev).
 
 ## Setup
 
 ```bash
-pnpm install
+bun install
 ```
 
 ## Development Server
@@ -13,19 +13,19 @@ pnpm install
 Development server is available at `http://127.0.0.1:3000`.
 
 ```bash
-pnpm dev
+bun --bun run dev
 ```
 
 ## Build for Production
 
 ```bash
-pnpm build
+bun run build
 ```
 
 Locally preview production build:
 
 ```bash
-pnpm preview
+bun run preview
 ```
 
 ## License
