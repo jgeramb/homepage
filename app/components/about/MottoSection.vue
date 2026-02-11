@@ -49,6 +49,7 @@ useTransitionListener(async () => {
   });
 
   SplitText.create(quoteRef.value, {
+    aria: "none",
     type: "lines, words, chars",
     autoSplit: true,
     onSplit(split: SplitText) {

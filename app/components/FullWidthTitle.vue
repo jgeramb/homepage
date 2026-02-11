@@ -65,6 +65,7 @@ useTransitionListener(() => {
   let animation: gsap.core.Tween | null = null;
 
   SplitText.create(titleRef.value, {
+    aria: "none",
     type: "chars",
     autoSplit: true,
     onSplit(split: SplitText) {
