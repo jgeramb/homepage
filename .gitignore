@@ -15,9 +15,16 @@ logs
 # Misc
 .DS_Store
 .fleet
-.idea
+.data
 
 # Local env files
-.env
-.env.*
+.env*
 !.env.example
+env.sh*
+!env.sh.example
+# Test coverage
+coverage/
+
+# Playwright
+playwright-report/
+test-results/

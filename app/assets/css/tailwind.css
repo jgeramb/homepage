@@ -1,0 +1,73 @@
+@import "#layers/base/app/assets/css/tailwind.css";
+@import "./fonts.css";
+
+/* sources */
+@source "../../app.vue";
+@source "../../error.vue";
+@source "../../layouts";
+@source "../../pages";
+@source "../../components";
+@source "../../composables";
+@source "../../nuxt.config.ts";
+
+@theme {
+  --color-accent: #961d40;
+
+  --color-primary-50: #fafafa;
+  --color-primary-100: #f4f4f5;
+  --color-primary-200: #e4e4e7;
+  --color-primary-300: #d4d4d8;
+  --color-primary-400: #a1a1aa;
+  --color-primary-500: #71717a;
+  --color-primary-600: #52525b;
+  --color-primary-700: #3f3f46;
+  --color-primary-800: #27272a;
+  --color-primary-900: #18181b;
+  --color-primary-950: #09090b;
+
+  --color-error: #d93036;
+  --color-warning: #f5a623;
+  --color-success: #0cce6b;
+
+  --font-title: Outfit, -apple-system-headline, Helvetica Neue, Helvetica, sans-serif;
+  --font-text: Inter, -apple-system-body, Helvetica Neue, Helvetica, sans-serif;
+
+  --bg-radial: radial-gradient(var(--tw-gradient-stops));
+
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+/* headings */
+@utility h1 {
+  @apply text-4xl lg:text-6xl leading-snug! uppercase font-title font-semibold tracking-tight;
+}
+
+@utility h2 {
+  @apply text-3xl lg:text-5xl leading-tight! font-title font-semibold tracking-tight;
+}
+
+@utility h3 {
+  @apply text-xl lg:text-2xl leading-tight! font-title font-semibold tracking-tight;
+}
+
+/* base styles */
+@layer base {
+  /* document */
+  body {
+    @apply font-text text-primary-950 bg-primary-100;
+  }
+
+  /* scrollbars */
+
+  ::-webkit-scrollbar {
+    @apply size-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-200;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-400 rounded-md;
+  }
+}

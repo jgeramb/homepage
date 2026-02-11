@@ -1,0 +1,97 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: "prod"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Create .env file
+        run: |
+          : > .env
+          echo "NUXT_GITHUB_TOKEN=${{ secrets.NUXT_GITHUB_TOKEN }}" >> .env
+
+      - name: Create .env.test file
+        run: |
+          : > .env.test
+          echo "NUXT_PUBLIC_BASE_URL=http://127.0.0.1:3000" >> .env.test
+          echo "NUXT_MAIL_RECIPIENT=${{ secrets.MAIL_RECIPIENT }}" >> .env.test
+          echo "NUXT_MAIL_SMTP_HOST=${{ secrets.MAIL_SMTP_HOST }}" >> .env.test
+          echo "NUXT_MAIL_SMTP_PORT=${{ secrets.MAIL_SMTP_PORT }}" >> .env.test
+          echo "NUXT_MAIL_SMTP_TLS=${{ secrets.MAIL_SMTP_TLS }}" >> .env.test
+          echo "NUXT_MAIL_SMTP_USERNAME=${{ secrets.MAIL_SMTP_USERNAME }}" >> .env.test
+          echo "NUXT_MAIL_SMTP_PASSWORD=${{ secrets.MAIL_SMTP_PASSWORD }}" >> .env.test
+
+      - name: Prepare Nuxt
+        run: bun run nuxi prepare
+
+      - name: Get cache revalidation period
+        id: get-cache-period
+        run: |
+          year=$(date +'%Y')
+          day_of_year=$(date +'%-j')
+          period_id=$((day_of_year / 14)) # revalidate every 14 days
+
+          echo "cache_period=${year}-P${period_id}" >> $GITHUB_OUTPUT
+
+      - name: Cache web caches
+        uses: actions/cache@v4
+        with:
+          path: .tmp
+          key: ${{ runner.os }}-web-caches-${{ steps.get-cache-period.outputs.cache_period }}
+          restore-keys: ${{ runner.os }}-web-caches-${{ steps.get-cache-period.outputs.cache_period }}
+
+      - name: Install playwright
+        run: npx playwright-core install --with-deps
+
+      - name: Run test
+        run: npm run test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: "prod"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Deploy to server
+        run: |
+          ssh -v -o StrictHostKeyChecking=no ${{ vars.DEPLOY_USER }}@${{ vars.DEPLOY_HOST }} <<'ENDSSH'
+          cd ${{ vars.APP_DIR }}
+          git pull
+          : > env.sh
+          echo "export NUXT_GITHUB_TOKEN=\"${{ secrets.NUXT_GITHUB_TOKEN }}\"" >> env.sh
+          echo "export NUXT_PUBLIC_BASE_URL=\"${{ vars.BASE_URL }}\"" >> env.sh
+          echo "export NUXT_MAIL_RECIPIENT=\"${{ secrets.MAIL_RECEIVER }}\"" >> env.sh
+          echo "export NUXT_MAIL_SMTP_HOST=\"${{ secrets.MAIL_SMTP_HOST }}\"" >> env.sh
+          echo "export NUXT_MAIL_SMTP_PORT=\"${{ secrets.MAIL_SMTP_PORT }}\"" >> env.sh
+          echo "export NUXT_MAIL_SMTP_TLS=\"${{ secrets.MAIL_SMTP_TLS }}\"" >> env.sh
+          echo "export NUXT_MAIL_SMTP_USERNAME=\"${{ secrets.MAIL_SMTP_USERNAME }}\"" >> env.sh
+          echo "export NUXT_MAIL_SMTP_PASSWORD=\"${{ secrets.MAIL_SMTP_PASSWORD }}\"" >> env.sh
+          bash ${{ vars.DEPLOY_SCRIPT }}
+          ENDSSH

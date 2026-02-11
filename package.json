@@ -1,23 +1,46 @@
 {
   "name": "homepage",
+  "type": "module",
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev --host 127.0.0.1",
-    "preview": "nuxt preview"
+    "test": "vitest run --pass-with-no-tests",
+    "build": "nuxt build",
+    "start": "nuxt start"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.13.2",
-    "@nuxt/image": "^1.7.0",
-    "@nuxtjs/tailwindcss": "^6.12.1",
-    "nuxt": "latest",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "sass": "^1.77.8",
-    "tailwindcss": "^3.4.7",
+    "@nuxt/test-utils": "3",
+    "@playwright/test": "^1.58.2",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/nodemailer": "^7.0.9",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^20.6.1",
+    "playwright-core": "^1.58.2",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.1.18",
+    "tailwindcss-spring": "^1.0.1",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.11.2",
+    "@nuxt/image": "^2.0.0",
+    "better-sqlite3": "^12.6.2",
+    "gsap": "^3.14.2",
+    "nodemailer": "^8.0.1",
+    "nuxt": "^4.3.1",
     "vue": "latest",
     "vue-router": "latest"
   },
-  "dependencies": {
-    "gsap": "^3.12.5",
-    "nodemailer": "^6.9.14"
-  }
+  "overrides": {
+    "magicast": "0.3.5",
+    "sharp": "0.34.4",
+    "css-tree": "2.2.1"
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "better-sqlite3",
+    "esbuild",
+    "sharp"
+  ]
 }

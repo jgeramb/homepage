@@ -1,20 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: {
-    enabled: false
-  },
+  compatibilityDate: "2026-02-11",
 
-  spaLoadingTemplate: false,
-  pages: true,
-  css: ["assets/scss/master.scss"],
+  extends: [
+    [
+      "github:devite-io/nuxt-base-layer",
+      {
+        auth: process.env.NUXT_GITHUB_TOKEN,
+        meta: { name: "base" }
+      }
+    ]
+  ],
 
   // modules
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/content"],
-
-  tailwindcss: {
-    cssPath: "assets/scss/tailwind.scss",
-    viewer: false
-  },
+  modules: ["@nuxt/image", "@nuxt/content"],
 
   image: {
     provider: "ipx",
@@ -26,110 +25,51 @@ export default defineNuxtConfig({
       lg: 1024,
       xl: 1280,
       "2xl": 1536
-    }
+    },
+    densities: [1, 2],
+    format: ["avif", "webp", "jpeg"]
   },
 
   // environment
   runtimeConfig: {
-    mailHost: "",
-    mailPort: "",
-    mailSecure: "",
-    mailUser: "",
-    mailPassword: "",
-    mailRecipient: "",
-    public: {
-      baseURL: ""
+    mail: {
+      recipient: "",
+      smtp: {
+        host: "",
+        port: 465,
+        tls: true,
+        username: "",
+        password: ""
+      }
     }
   },
 
   // app
   app: {
     head: {
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
-      htmlAttrs: {
-        lang: "en",
-        prefix: "og: https://ogp.me/ns#"
-      },
+      htmlAttrs: { lang: "en" },
       meta: [
-        {
-          "http-equiv": "X-UA-Compatible",
-          content: "IE=edge"
-        },
-        // SEO
-        {
-          name: "site_name",
-          content: "Justus Geramb"
-        },
-        {
-          property: "og:type",
-          content: "website"
-        },
-        {
-          name: "og:image",
-          content: "/seo/banner.png"
-        },
-        {
-          property: "twitter:card",
-          content: "summary"
-        },
-        {
-          name: "twitter:image",
-          content: "/seo/banner.png"
-        },
-        // Windows
-        {
-          name: "msapplication-TileColor",
-          content: "#fafafa"
-        },
-        {
-          name: "msapplication-Config",
-          content: "/browserconfig.xml"
-        },
-        // styles
-        {
-          name: "theme-color",
-          content: "#09090b"
-        },
-        {
-          name: "apple-mobile-web-app-status-bar-style",
-          content: "#09090b"
-        }
+        // OpenGraph + Twitter
+        { name: "site_name", content: "Justus Geramb" },
+        { name: "og:image", content: process.env.NUXT_PUBLIC_BASE_URL + "/assets/images/banner.png" },
+        { name: "twitter:image", content: process.env.NUXT_PUBLIC_BASE_URL + "/assets/images/banner.png" }
       ],
       link: [
-        // seo
+        // font preloading: Outfit
         {
-          rel: "shortcut icon",
-          sizes: "48x48",
-          href: "/favicon.ico"
+          rel: "preload",
+          as: "font",
+          type: "font/woff2",
+          href: "/assets/fonts/Outfit/de+en/SemiBold.woff2",
+          crossorigin: "anonymous"
         },
+        // font preloading: Inter
         {
-          rel: "icon",
-          type: "image/png",
-          sizes: "32x32",
-          href: "/seo/favicon-32x32.png"
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "16x16",
-          href: "/seo/favicon-16x16.png"
-        },
-        // Safari
-        {
-          rel: "apple-touch-icon",
-          type: "image/png",
-          sizes: "180x180",
-          href: "/apple-touch-icon.png"
-        },
-        {
-          rel: "manifest",
-          href: "/site.webmanifest"
-        },
-        {
-          rel: "mask-icon",
-          href: "/seo/safari-pinned-tab.svg",
-          color: "#09090b"
+          rel: "preload",
+          as: "font",
+          type: "font/woff2",
+          href: "/assets/fonts/Inter/de+en/Regular.woff2",
+          crossorigin: "anonymous"
         }
       ],
       script: [
@@ -143,26 +83,24 @@ export default defineNuxtConfig({
             "mainEntity": {
               "@type": "Person",
               "url": "${process.env.NUXT_PUBLIC_BASE_URL}",
-              "image": "${process.env.NUXT_PUBLIC_BASE_URL}/images/portrait.jpeg",
+              "image": "${process.env.NUXT_PUBLIC_BASE_URL}/assets/images/portrait.jpeg",
               "name": "Justus Geramb",
-              "alternateName": "JustixDev",
+              "alternateName": "Justix",
               "jobTitle": "Web Developer",
               "description": "Web Developer",
               "email": "admin@justix.dev",
               "telephone": "+491758842377",
               "sameAs": [
-                "https://www.linkedin.com/in/justus-geramb-8a329b267",
+                "https://github.com/jgeramb",
+                "https://www.linkedin.com/in/justus-geramb-8a329b267/",
                 "https://www.instagram.com/justixdev",
-                "https://www.youtube.com/@justixdev",
-                "https://x.com/JustixDeveloper"
+                "https://www.youtube.com/@justixdev"
               ]
             }
           }`
         }
       ]
-    },
-    layoutTransition: { name: "layout", mode: "out-in" },
-    pageTransition: { name: "page", mode: "out-in" }
+    }
   },
 
   // server
@@ -174,5 +112,8 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: "2024-07-16"
+  // imports
+  imports: {
+    dirs: ["composables/**"]
+  }
 });
