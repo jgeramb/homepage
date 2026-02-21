@@ -87,7 +87,7 @@ jobs:
           : > env.sh
           echo "export NUXT_GITHUB_TOKEN=\"${{ secrets.NUXT_GITHUB_TOKEN }}\"" >> env.sh
           echo "export NUXT_PUBLIC_BASE_URL=\"${{ vars.BASE_URL }}\"" >> env.sh
-          echo "export NUXT_MAIL_RECIPIENT=\"${{ secrets.MAIL_RECEIVER }}\"" >> env.sh
+          echo "export NUXT_MAIL_RECIPIENT=\"${{ secrets.MAIL_RECIPIENT }}\"" >> env.sh
           echo "export NUXT_MAIL_SMTP_HOST=\"${{ secrets.MAIL_SMTP_HOST }}\"" >> env.sh
           echo "export NUXT_MAIL_SMTP_PORT=\"${{ secrets.MAIL_SMTP_PORT }}\"" >> env.sh
           echo "export NUXT_MAIL_SMTP_TLS=\"${{ secrets.MAIL_SMTP_TLS }}\"" >> env.sh
