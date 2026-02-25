@@ -26,7 +26,6 @@ WORKDIR /app
 RUN chown -R bun:bun /app && chmod -R 755 /app
 
 USER bun
-COPY --from=deps --chown=bun /deps/node_modules node_modules
 COPY --from=build --chown=bun /build/package.json package.json
 COPY --from=build --chown=bun /build/$outputDir dist
 COPY --from=build --chown=bun /build/env.sh env.sh
