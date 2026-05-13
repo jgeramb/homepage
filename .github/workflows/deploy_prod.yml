@@ -10,10 +10,10 @@ jobs:
     environment: "prod"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
@@ -50,29 +50,35 @@ jobs:
           year=$(date +'%Y')
           day_of_year=$(date +'%-j')
           period_id=$((day_of_year / 14)) # revalidate every 14 days
-
+          
           echo "cache_period=${year}-P${period_id}" >> $GITHUB_OUTPUT
 
-      - name: Cache web caches
-        uses: actions/cache@v4
+      - name: Restore cache for playwright browsers and web caches
+        uses: actions/cache/restore@v5
         with:
-          path: .tmp
+          path: |
+            .tmp
+            /home/runner/.cache
           key: ${{ runner.os }}-web-caches-${{ steps.get-cache-period.outputs.cache_period }}
-          restore-keys: ${{ runner.os }}-web-caches-${{ steps.get-cache-period.outputs.cache_period }}
 
       - name: Install playwright
         run: npx playwright-core install --with-deps
 
       - name: Run test
         run: npm run test
+
+      - name: Cache playwright browsers and web caches
+        uses: actions/cache/save@v5
+        with:
+          path: |
+            .tmp
+            /home/runner/.cache
+          key: ${{ runner.os }}-web-caches-${{ steps.get-cache-period.outputs.cache_period }}
   deploy:
     needs: test
     runs-on: ubuntu-latest
     environment: "prod"
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
