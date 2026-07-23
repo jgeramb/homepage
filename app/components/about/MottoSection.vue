@@ -28,7 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import { useTransitionListener } from "#layers/base/app/composables/transition/listener";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";

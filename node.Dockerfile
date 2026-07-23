@@ -3,7 +3,7 @@ FROM oven/bun:alpine AS base
 ARG outputDir=".output"
 
 # install node.js
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs icu-data-full make python3
 
 # install dependencies
 FROM base AS deps

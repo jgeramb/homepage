@@ -19,8 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { useTransitionListener } from "#layers/base/app/composables/transition/listener";
-
 const { data: referenceItems } = await useReferenceItems();
 
 import { gsap } from "gsap";
